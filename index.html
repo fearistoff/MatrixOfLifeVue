@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+  <link href="https://fonts.googleapis.com/css?family=Nunito&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="input-menu block-design">
+      <h1>Калькулятор матриц</h1>
+      <input v-model="name" type="text" class="name" placeholder="Введите имя">
+      <input v-model="date" type="text" class="date" v-on:keydown="checkSymbol">
+      <div class="calculate m-button" @click="calculate">Посчитать</div>
+      <div class="saves m-button" @click="savesListDisplay = true">Сохранённые матрицы</div>
+    </div>
+    <transition name="back">
+      <div class="background-block" v-if="savesListDisplay" @click="savesListDisplay = false"></div>
+    </transition>
+    <transition name="list">
+    <div class="saves-list block-design" v-if="savesListDisplay">
+      <h2>Список матриц</h2>
+      <transition-group name="list-animate" tag="ul" >
+        <li v-for="(savesItem, index) in saves" v-bind:key="savesItem" class="list-animate-item" @click="changeMatrix(savesItem.date)">
+          <span>{{savesItem.name}} ()</span>
+          <transition name="delete-list-item">
+            <span v-if="deleteMode" @click="deleteMatrix(index)" class="delete-matrix">Удалить</span>
+          </transition>
+        </li>
+      </transition-group>
+      <h3 v-if="saves.length == 0">Список пуст...</h3>
+      <div class="toggle-b" v-bind:class="{'toggle-true': deleteMode}" @click="deleteMode = !deleteMode"><i class="fas fa-trash"></i></div>
+    </ul>
+  </transition>
+  </div>
+  <script src="./script.js"></script>
+</body>
+
+</html>
