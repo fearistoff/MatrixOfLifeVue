@@ -12,7 +12,7 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 28px;
+  font-size: 25px;
   margin-bottom: 10px;
 }
 
@@ -29,7 +29,7 @@ h3 {
   background-color: #ffffff;
   border-radius: 15px;
   padding: 20px;
-  box-shadow:rgba(0, 0, 0, 0.5) 0 5px 15px 0;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 5px 10px 0;
 }
 
 .input-menu {
@@ -83,6 +83,7 @@ h3 {
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity .5s;
   opacity: 1;
+  backdrop-filter: blur(4px);
 }
 
 .saves-list {
@@ -173,4 +174,65 @@ h3 {
 .list-animate-enter, .list-animate-leave-to {
   opacity: 0;
   transform: translate(30px, 0px);
+}
+
+.logo {
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+
+
+@keyframes rainbow {
+  0% {
+    stroke: #ff00ff;
+    transform: scale(0.95);
+  }
+
+  16% {
+    stroke: #ff0000;
+    transform: scale(1.05);
+  }
+
+  32% {
+    stroke: #ffff00;
+    transform: scale(0.95);
+  }
+
+  48% {
+    stroke: #00ff00;
+    transform: scale(1.05);
+  }
+
+  64% {
+    stroke: #00ffff;
+    transform: scale(0.95);
+  }
+
+  80% {
+    stroke: #0000ff;
+    transform: scale(1.05);
+  }
+
+  100% {
+    stroke: #ff00ff;
+    transform: scale(0.95);
+  }
+}
+
+.logo rect {
+  fill: none;
+  animation: rainbow 36s ease infinite;
+  animation-delay: 1s;
+  transform-origin: 200px 200px;
+  stroke-linejoin: round;
+}
+
+.logo .diag {
+  transform: rotate(45deg);
+  transform-origin: 200px 200px;
 }

@@ -7,37 +7,66 @@
   <title>Vue</title>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
   <link href="https://fonts.googleapis.com/css?family=Nunito&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
   <div id="app">
-    <div class="input-menu block-design">
-      <h1>Калькулятор матриц</h1>
-      <input v-model="name" type="text" class="name" placeholder="Введите имя">
-      <input v-model="date" type="text" class="date" v-on:keydown="checkSymbol">
-      <div class="calculate m-button" @click="calculate">Посчитать</div>
-      <div class="saves m-button" @click="savesListDisplay = true">Сохранённые матрицы</div>
+    <div class="logo">
+      <svg width="100%" height="99%" viewBox="0 0 400 400">
+        <g class="diag">
+          <rect y="100" x="100" height="200" width="200" style="stroke-width:6;animation-delay:-1s;" />
+          <rect y="129.28932" x="129.28932" height="141.42136" width="141.42136"
+            style="stroke-width:5;animation-delay:-3s;" />
+          <rect y="150" x="150" height="100.00002" width="99.999985" style="stroke-width:4;animation-delay:-5s;" />
+          <rect y="164.64465" x="164.64465" height="70.710709" width="70.710678"
+            style="stroke-width:3;animation-delay:-7s;" />
+          <rect y="175" x="175" height="50.000011" width="50.000011" style="stroke-width:2;animation-delay:-9s;" />
+          <rect y="182.32233" x="182.32233" height="35.355339" width="35.355339"
+            style="stroke-width:1;animation-delay:-11s;" />
+        </g>
+        <rect y="100" x="100" height="200" width="200" style="stroke-width:6;;animation-delay:0s;" />
+        <rect y="129.28932" x="129.28932" height="141.42136" width="141.42136"
+          style="stroke-width:5;animation-delay:-2s;" />
+        <rect y="150" x="150" height="100.00002" width="99.999985" style="stroke-width:4;animation-delay:-4s;" />
+        <rect y="164.64465" x="164.64465" height="70.710709" width="70.710678"
+          style="stroke-width:3;animation-delay:-6s;" />
+        <rect y="175" x="175" height="50.000011" width="50.000011" style="stroke-width:2;animation-delay:-8s;" />
+        <rect y="182.32233" x="182.32233" height="35.355339" width="35.355339"
+          style="stroke-width:1;animation-delay:-10s;" />
+      </svg>
     </div>
+    <transition>
+      <div class="input-menu block-design">
+        <h1>Калькулятор матриц</h1>
+        <input v-model="name" type="text" class="name" placeholder="Введите имя">
+        <input v-model="date" type="text" class="date" v-on:keydown="checkSymbol">
+        <div class="calculate m-button" @click="calculate">Посчитать</div>
+        <div class="saves m-button" @click="savesListDisplay = true">Сохранённые матрицы</div>
+      </div>
+    </transition>
     <transition name="back">
-      <div class="background-block" v-if="savesListDisplay" @click="savesListDisplay = false"></div>
+      <div class="background-block" v-if="savesListDisplay" @click="savesListDisplay = false; deleteMode = false"></div>
     </transition>
     <transition name="list">
-    <div class="saves-list block-design" v-if="savesListDisplay">
-      <h2>Список матриц</h2>
-      <transition-group name="list-animate" tag="ul" >
-        <li v-for="(savesItem, index) in saves" v-bind:key="savesItem" class="list-animate-item" @click="changeMatrix(savesItem.date)">
-          <span>{{savesItem.name}} ()</span>
-          <transition name="delete-list-item">
-            <span v-if="deleteMode" @click="deleteMatrix(index)" class="delete-matrix">Удалить</span>
-          </transition>
-        </li>
-      </transition-group>
-      <h3 v-if="saves.length == 0">Список пуст...</h3>
-      <div class="toggle-b" v-bind:class="{'toggle-true': deleteMode}" @click="deleteMode = !deleteMode"><i class="fas fa-trash"></i></div>
-    </ul>
-  </transition>
+      <div class="saves-list block-design" v-if="savesListDisplay">
+        <h2>Список матриц</h2>
+        <transition-group name="list-animate" tag="ul">
+          <li v-for="(savesItem, index) in saves" v-bind:key="savesItem" class="list-animate-item"
+            @click="changeMatrix(savesItem.date)">
+            <span>{{savesItem.name}} ({{getAge(savesItem.date)}})</span>
+            <transition name="delete-list-item">
+              <span v-if="deleteMode" @click="deleteMatrix(index)" class="delete-matrix">Удалить</span>
+            </transition>
+          </li>
+        </transition-group>
+        <h3 v-if="saves.length == 0">Список пуст...</h3>
+        <div class="toggle-b" v-bind:class="{'toggle-true': deleteMode}" @click="deleteMode = !deleteMode"><i
+            class="fas fa-trash"></i></div>
+        </ul>
+    </transition>
   </div>
   <script src="./script.js"></script>
 </body>

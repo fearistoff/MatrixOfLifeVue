@@ -86,10 +86,8 @@ new Vue({
         if (!this.deleteMode) {
           this.date = newMatrix;
           this.dateValue = newMatrix;
+          this.savesListDisplay = false;
         }
-      },
-      appearSavesList: function () {
-          this.savesListDisplay = true;
       },
       calculate: function () {
         if (this.dateValue.match(/\d\d\.\d\d\.\d\d\d\d/) || this.name != '') {
@@ -98,10 +96,18 @@ new Vue({
             name: this.name
           });
           localStorage.saves = JSON.stringify(this.saves);
+        } else {
+          alert('Введено неверное имя или дата!')
         }
       },
       deleteMatrix: function(index) {
         this.saves.splice(index, 1);
+        localStorage.saves = JSON.stringify(this.saves);
+      },
+      getAge: function (dateString) {
+        let dateArray = dateString.split('.');
+        let dateNewString = `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`;
+        return Math.floor(((new Date()).getTime() - (new Date(dateNewString)).getTime())/(1000 * 3600 * 24 * 365))
       }
     }
 })
