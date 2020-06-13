@@ -4,7 +4,7 @@ new Vue({
   el: '#app',
   data: {
     name: '',
-    date: undefined,
+    date: "2020-06-12",
     saves: localStorage.saves ? JSON.parse(localStorage.saves) : [],
     savesListDisplay: false,
     deleteMode: false
