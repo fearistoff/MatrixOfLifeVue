@@ -53,6 +53,7 @@ h3 {
   display: block;
   width: -webkit-fill-available;
   margin: 0 0 10px 0;
+  -webkit-appearance: none;
 }
 
 .input-menu input:focus {
