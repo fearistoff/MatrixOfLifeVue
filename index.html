@@ -42,7 +42,7 @@
       <div class="input-menu block-design">
         <h1>Калькулятор матриц</h1>
         <input v-model="name" type="text" class="name" placeholder="Введите имя">
-        <input v-model="date" type="text" class="date" v-on:keydown="checkSymbol">
+        <input v-model="date" type="date" class="date">
         <div class="calculate m-button" @click="calculate">Посчитать</div>
         <div class="saves m-button" @click="savesListDisplay = true">Сохранённые матрицы</div>
       </div>

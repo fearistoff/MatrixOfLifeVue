@@ -42,7 +42,7 @@ h3 {
 .flex-row-container {
   display: flex;
   justify-content: space-between;
-  
+
 }
 
 .input-menu input {
@@ -83,7 +83,6 @@ h3 {
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity .5s;
   opacity: 1;
-  backdrop-filter: blur(4px);
 }
 
 .saves-list {
@@ -138,25 +137,33 @@ h3 {
   background-color: red;
 }
 
-.back-enter-active, .back-leave-active {
+.back-enter-active,
+.back-leave-active {
   transition: opacity .4s linear;
 }
-.back-enter, .back-leave-to {
+
+.back-enter,
+.back-leave-to {
   opacity: 0;
 }
 
-.list-enter-active, .list-leave-active {
+.list-enter-active,
+.list-leave-active {
   transition: transform .4s ease;
 }
-.list-enter, .list-leave-to {
+
+.list-enter,
+.list-leave-to {
   transform: translate(400px, 0px);
 }
 
-.delete-list-item-enter-active, .delete-list-item-leave-active {
+.delete-list-item-enter-active,
+.delete-list-item-leave-active {
   transition: opacity 0.2s linear;
 }
 
-.delete-list-item-enter, .delete-list-item-leave-to {
+.delete-list-item-enter,
+.delete-list-item-leave-to {
   opacity: 0;
 }
 
@@ -171,7 +178,8 @@ h3 {
   transition: all 0.5s ease;
 }
 
-.list-animate-enter, .list-animate-leave-to {
+.list-animate-enter,
+.list-animate-leave-to {
   opacity: 0;
   transform: translate(30px, 0px);
 }
