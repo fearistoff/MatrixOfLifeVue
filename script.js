@@ -28,7 +28,7 @@ const mainTailList = {
       "description": ""
   }
 }
-
+try {
 new Vue({
   el: '#app',
   data: {
@@ -90,3 +90,6 @@ new Vue({
     }
   }
 });
+} catch (err){
+  alert(err)
+}
