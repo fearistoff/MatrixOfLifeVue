@@ -155,7 +155,7 @@ h3 {
 
 .list-enter,
 .list-leave-to {
-  transform: translate(400px, 0px);
+  transform: translate(110%, 0px);
 }
 
 .delete-list-item-enter-active,
@@ -233,6 +233,11 @@ h3 {
   }
 }
 
+svg * {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .logo rect {
   fill: none;
   animation: rainbow 36s ease infinite;
@@ -244,4 +249,196 @@ h3 {
 .logo .diag {
   transform: rotate(45deg);
   transform-origin: 200px 200px;
+}
+
+.toggle-main-menu {
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: box-shadow linear 0.3s, background-color linear 0.3s;
+  box-shadow: rgba(0, 0, 0, 0) 0 5px 10px 0;
+}
+
+.toggle-main-menu>* {
+  transition: transform ease 0.3s;
+  font-size: 20px;
+  transform-origin: center;
+}
+
+.toggle-main-menu.reverse>* {
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.toggle-main-menu.reverse {
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 5px 10px 0;
+}
+
+.main-menu-enter-active,
+.main-menu-leave-active {
+  transition: transform 0.4s ease;
+}
+
+.main-menu-enter,
+.main-menu-leave-to {
+  transform: translate(-110%, 0px);
+}
+
+.logo-enter-active,
+.logo-leave-active {
+  transition: transform 0.4s ease, opacity 0.4s linear;
+}
+
+.logo-enter,
+.logo-leave-to {
+  transform: scale(0);
+  opacity: 0;
+}
+
+/*раздел графики матрицы*/
+
+.result {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+}
+.tail {
+  transition: fill 0.3s linear;
+  stroke: #000088;
+  fill: rgba(0, 0, 136, 0);
+  stroke-width: 1px;
+  display: none;
+}
+
+.tail:hover {
+  fill: rgba(0, 0, 136, 0.4);
+}
+
+.dark .tail:hover {
+  fill: rgba(127, 127, 255, 0.4);
+}
+
+.dark .tail {
+  stroke: #7f7fff;
+}
+
+.tail.show {
+  display: inline;
+}
+
+.background-m {
+  fill: #888888;
+  stroke: #888888;
+  stroke-width: 1;
+}
+
+.background-m.square {
+  fill: none;
+}
+
+.energy>circle {
+  fill: #ffffff;
+  stroke: #7f7f7f;
+  stroke-width: 2px;
+}
+
+
+.energy.purple>circle {
+  stroke: #c800c8;
+}
+
+.energy.blue>circle {
+  stroke: #0000c8;
+}
+
+.energy.light-blue>circle {
+  stroke: #00c8c8;
+}
+
+.energy.green>circle {
+  stroke: #00c800;
+}
+
+.energy.yellow>circle {
+  stroke: #c8c800;
+}
+
+.energy.orange>circle {
+  stroke: #ea3f00;
+}
+
+.energy.red>circle {
+  stroke: #c80000;
+}
+
+.dark .energy>circle {
+  fill: #222222;
+}
+
+.energy>text {
+  text-anchor: middle;
+  font-size: 13.33px;
+}
+
+.dark .energy>text {
+  fill: #ffffff;
+}
+
+.energy-per-year>* {
+  fill: #888888;
+}
+
+.energy-per-year>text {
+  font-size: 8px;
+  text-anchor: middle;
+}
+
+.energy-per-year>text.end {
+  text-anchor: end;
+}
+
+.energy-per-year>text.middle {
+  text-anchor: middle;
+}
+
+.comfort-zone rect {
+  fill: #ffffff;
+  stroke: #888888;
+}
+
+.comfort-zone text {
+  fill: #000000;
+  font-size: 8px;
+  text-anchor: middle;
+}
+
+.dark .comfort-zone rect {
+  fill: #222222;
+}
+
+.dark .comfort-zone text {
+  fill: #ffffff;
+}
+
+.background-t {
+  fill: #888888;
+  font-size: 8px;
+}
+
+.background-t.middle {
+  text-anchor: middle;
+}
+
+.background-t.end {
+  text-anchor: end;
 }
