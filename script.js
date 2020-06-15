@@ -63,6 +63,7 @@ new Vue({
       } else {
         alert('Введено неверное имя или дата!')
       }
+      alert("wow!")
     },
     engageMatrix: function (name, date) {
       this.currentMatrix = new MatrixOfLife(date, name)
