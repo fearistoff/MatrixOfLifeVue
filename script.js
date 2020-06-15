@@ -81,7 +81,7 @@ new Vue({
   }
 });
 
-const splitAndAdd = (inNumber) => {
+function splitAndAdd (inNumber) {
   const countOfEnegries = 22;
   let newNumber;
   if (inNumber <= countOfEnegries) {
@@ -403,9 +403,9 @@ class MatrixOfLife {
       //     }
       // }
       
-      this.energyList.forEach((item) => {
+      // this.energyList.forEach((item) => {
           
-      });
+      // });
   }
 }
 //класс хвостов и программ
@@ -420,9 +420,9 @@ class MatrixOfLifeTails {
           this.DOMtail.classList.add('show');
       }
       
-      this.DOMtail.addEventListener("click", () => {
-          // call ann window 
-      });
+      // this.DOMtail.addEventListener("click", () => {
+      //     // call ann window 
+      // });
   }
 }
 // класс энергий
@@ -431,16 +431,16 @@ class MatrixOfLifeElements {
       this.arcane = splitAndAdd(number);
       this.neighborPairList = [];
   }
-  addNeighbors = (list) => {
-      list.forEach((item) => {
-          this.neighborPairList.push(item);
-      });
+  addNeighbors = function (list) {
+      // list.forEach((item) => {
+      //     this.neighborPairList.push(item);
+      // });
   }
-  getArcane = () => {
+  getArcane = function () {
       return this.arcane;
   }
   // возвращает список из списка соседей тройняшек или двойняшек класса MatrixOfLifeElements 
-  getAllElements = () => {
-      return this.neighborPairList.map((item) => {return item[1]?[this, item[0], item[1]] : [ this, item[0]]});
-  }
+  // getAllElements = function () {
+  //     return this.neighborPairList.map((item) => {return item[1]?[this, item[0], item[1]] : [ this, item[0]]});
+  // }
 }
