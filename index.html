@@ -4,7 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue</title>
+  <title>Калькулятор матриц</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
   <link href="https://fonts.googleapis.com/css?family=Nunito&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -414,8 +417,8 @@
             </g>
             <!-- тексты статичные -->
             <g>
-              <text class="background-t middle">Женский род</text>
-              <text class="background-t middle">Мужской род</text>
+              <text x="122" y="312" class="background-t middle" style="transform: rotate(-45deg);transform-origin: center;">Женский род</text>
+              <text x="264" y="316" class="background-t middle" style="transform: rotate(45deg); transform-origin: center center;">Мужской род</text>
               <text class="background-t middle" x="14.128252" y="355.22217" >0 лет</text>    
               <text class="background-t middle" x="59.01709" y="240.06137" >10 лет</text>
               <text class="background-t middle" x="161.44058" y="201.72647" >20 лет</text>
@@ -625,7 +628,10 @@
         <div class="saves m-button" @click="savesListDisplay = true">Сохранённые матрицы</div>
       </div>
     </transition>
-    <div @click="mainMenuHidden = !mainMenuHidden" :class="{reverse: mainMenuHidden}" class="toggle-main-menu"><i class="fas fa-arrow-left"></i></div>
+    <div @click="mainMenuHidden = !mainMenuHidden" :class="{reverse: mainMenuHidden}" class="toggle-main-menu">
+      <i class="fas fa-arrow-left close-menu-icon"></i>
+      <i class="fas fa-bars open-menu-icon"></i>
+    </div>
     <transition name="back">
       <div class="background-block" v-if="savesListDisplay" @click="savesListDisplay = false; deleteMode = false"></div>
     </transition>

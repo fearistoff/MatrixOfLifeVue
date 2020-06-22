@@ -56,11 +56,6 @@ h3 {
   -webkit-appearance: none;
 }
 
-.input-menu input:focus {
-  border: solid 1px #00ffaa;
-  background-color: #ddfff4;
-}
-
 .m-button {
   padding: 0.5em;
   border-radius: 2em;
@@ -70,6 +65,7 @@ h3 {
   align-items: center;
   margin-top: 10px;
   cursor: pointer;
+  font-weight: bold;
   transition: background-color linear 0.2s;
 }
 
@@ -282,6 +278,14 @@ svg * {
   box-shadow: rgba(0, 0, 0, 0.3) 0 5px 10px 0;
 }
 
+.toggle-main-menu.reverse .close-menu-icon, .toggle-main-menu .open-menu-icon {
+  display: none;
+}
+
+.toggle-main-menu .close-menu-icon, .toggle-main-menu.reverse .open-menu-icon {
+  display: block;
+}
+
 .main-menu-enter-active,
 .main-menu-leave-active {
   transition: transform 0.4s ease;
@@ -322,14 +326,6 @@ svg * {
 
 .tail:hover {
   fill: rgba(0, 0, 136, 0.4);
-}
-
-.dark .tail:hover {
-  fill: rgba(127, 127, 255, 0.4);
-}
-
-.dark .tail {
-  stroke: #7f7fff;
 }
 
 .tail.show {
@@ -381,17 +377,9 @@ svg * {
   stroke: #c80000;
 }
 
-.dark .energy>circle {
-  fill: #222222;
-}
-
 .energy>text {
   text-anchor: middle;
   font-size: 13.33px;
-}
-
-.dark .energy>text {
-  fill: #ffffff;
 }
 
 .energy-per-year>* {
@@ -422,14 +410,6 @@ svg * {
   text-anchor: middle;
 }
 
-.dark .comfort-zone rect {
-  fill: #222222;
-}
-
-.dark .comfort-zone text {
-  fill: #ffffff;
-}
-
 .background-t {
   fill: #888888;
   font-size: 8px;
@@ -441,4 +421,67 @@ svg * {
 
 .background-t.end {
   text-anchor: end;
+}
+
+@media (prefers-color-scheme: dark) {
+  .comfort-zone rect {
+    fill: #222222;
+  }
+  
+  .comfort-zone text {
+    fill: #ffffff;
+  }
+
+  .tail:hover {
+    fill: rgba(127, 127, 255, 0.4);
+  }
+  
+  .tail {
+    stroke: #7f7fff;
+  }
+
+  .energy>text {
+    fill: #ffffff;
+  }
+
+  .energy>circle {
+    fill: #222222;
+  }
+
+  body {
+    background-color: #222222;
+    color: #ffffff;
+  }
+
+  .block-design {
+    background-color: #222222;
+  }
+
+  .input-menu input {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #757575;
+  }
+
+  .m-button {
+    background-color: #483d8b;
+  }
+
+  .m-button:hover {
+    background-color: #7365d3;
+  }
+
+  .toggle-b {
+    background-color: #5a0000;
+    color: #ffffff;
+  }
+
+  .delete-matrix {
+    background-color: #5a0000;
+    color: #ffffff;
+  }
+
+  .toggle-main-menu.reverse {
+    background-color: #222222;
+  }
 }
