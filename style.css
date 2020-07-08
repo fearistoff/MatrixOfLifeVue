@@ -321,7 +321,6 @@ svg * {
   stroke: #000088;
   fill: rgba(0, 0, 136, 0);
   stroke-width: 1px;
-  display: none;
 }
 
 .tail:hover {
