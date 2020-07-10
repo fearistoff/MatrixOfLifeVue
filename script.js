@@ -103,6 +103,14 @@ new Vue({
     mainMenuHidden: false,
     showResults: false,
     currentMatrix: undefined,
+    popupData: {
+      header: undefined,
+      text: undefined,
+      show: false
+    },
+    tailsList: [],
+    tailListShow: false,
+    selectedTail: {name: undefined, description: undefined, energy: undefined, tag: undefined}
   },
   methods: {
     loadMatrix: function (newMatrix) {
@@ -446,7 +454,7 @@ new Vue({
       data.t81.neighborPairList = [[data.t82, data.t83], [data.t82]];
       data.t82.neighborPairList = [[data.t81], [data.t83]];
       data.t83.neighborPairList = [[data.t82, data.t81], [data.t82]];
-
+      data.tailsList = {};
       for (let item in data) {
         // проверка энергий по каждому соседу являются ли они хвостом или проограммой
         // по всем элементам объекта класса
@@ -454,10 +462,14 @@ new Vue({
           data[item].neighborPairList.forEach((item2) => {    // смотрим у них каждый хвост или программу
             const tag = `t${data[item].arcane}_${item2[0].arcane}${item2[1]?`_${item2[1].arcane}`:''}`;    // совпадают ли их числа энергий с тегами хвостов или программ
             if (mainTailList[tag]) {
-              data[`${item}_${item2[1] ? item2[1].id : item2[0].id}`] = mainTailList[tag];
+              data.tailsList[`${item}_${item2[1] ? item2[1].id : item2[0].id}`] = {
+                name: mainTailList[tag].name,
+                description: mainTailList[tag].description,
+                energy: tag.slice(1, 7).split('_').join('-'),
+                tag: `${item}_${item2[1] ? item2[1].id : item2[0].id}`
+              };
             }
           });
-
           // this[item].getAllElements().forEach((item2) => {    // смотрим у них каждую двойку и тройку
           //   const tag = `t${item2[0].arcane}_${item2[1].arcane}${item2[2]?`_${item2[2].arcane}`:''}`;    // совпадают ли их числа энергий с тегами хвостов или программ
           //   if (mainTailList[tag]) { //mainTailList[tag]
@@ -475,6 +487,10 @@ new Vue({
         neighborPairList: [],
         pairElement: nonPairFalse
       }
-    }
+    },
+    selectTail: function (tail) {
+      this.selectedTail =  tail;
+      this.tailListShow = false;
+    } 
   }
 });
