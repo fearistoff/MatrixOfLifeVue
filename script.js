@@ -465,7 +465,7 @@ new Vue({
               data.tailsList[`${item}_${item2[1] ? item2[1].id : item2[0].id}`] = {
                 name: mainTailList[tag].name,
                 description: mainTailList[tag].description,
-                energy: tag.slice(1, 7).split('_').join('-'),
+                energy: tag.slice(1, 10).split('_').join('-'),
                 tag: `${item}_${item2[1] ? item2[1].id : item2[0].id}`
               };
             }
