@@ -29,7 +29,7 @@ const mainTailList = {
   },
   "t15_7": {
       "name": "Агрессия",
-      "description": ""
+      "description": "Три энергии внизу матрицы судьбы (на рисунке обведены красной линией) называют «кармическим хвостом». Это кармический багаж, который человек принес из прошлых жизней. При рождении у человека эти энергии всегда в минусе. Трактовка каждой энергии в кармическом хвосте меняется, в зависимости от арканов, которые находятся рядом"
   },
   "t15_5_8": {
       "name": "Страсти в семье",
@@ -105,8 +105,10 @@ new Vue({
     currentMatrix: undefined,
     popupData: {
       header: undefined,
-      text: undefined,
-      show: false
+      body: undefined,
+      show: false,
+      buttonText: undefined,
+      buttonFunction: undefined
     },
     tailsList: [],
     tailListShow: false,
@@ -467,6 +469,7 @@ new Vue({
                 description: mainTailList[tag].description,
                 energy: tag.slice(1, 10).split('_').join('-'),
                 tag: `${item}_${item2[1] ? item2[1].id : item2[0].id}`
+                // position: data[item].position
               };
             }
           });
@@ -491,6 +494,27 @@ new Vue({
     selectTail: function (tail) {
       this.selectedTail =  tail;
       this.tailListShow = false;
-    } 
+    },
+    showPopup: function (header, body, buttonText, buttonFunction) {
+      this.popupData.header = header;
+      this.popupData.body = body;
+      this.popupData.show = true;
+      this.popupData.buttonText = buttonText;
+      this.popupData.buttonFunction = buttonFunction;
+    },
+    closePopup: function () {
+      this.popupData.header = undefined;
+      this.popupData.body = undefined;
+      this.popupData.show = false;
+      this.popupData.buttonText = undefined;
+      this.popupData.buttonFunction = undefined;
+    },
+    showTailInfo: function(tail) {
+      const description = `<span class="position">${tail.position ? tail.position.toLowerCase() : ''}</span><br/><p>${tail.description}</p>`;
+      this.showPopup(tail.name, description, 'Показать на матрице', this.selectTail.bind(this, tail));
+    },
+    checkOutTailSelection: function() {
+      this.selectedTail = {name: undefined, description: undefined, energy: undefined, tag: undefined};
+    }
   }
 });

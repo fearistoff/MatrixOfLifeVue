@@ -8,6 +8,7 @@
 
 body {
   background-color: #ffffff;
+  overflow: hidden;
 }
 
 h1 {
@@ -264,13 +265,8 @@ svg * {
   border-radius: 50%;
   transition: box-shadow linear 0.3s, opacity 0.3s linear;
   box-shadow: rgba(0, 0, 0, 0) 0 5px 10px 0;
-  z-index: 1;
+  z-index: 3;
   opacity: 1;
-}
-
-.toggle-main-menu.hide {
-  opacity: 0;
-  z-index: 0;
 }
 
 .toggle-main-menu.right {
@@ -309,6 +305,27 @@ svg * {
 .tails-enter,
 .tails-leave-to {
   transform: translate(110%, 0px);
+}
+
+.popup-enter-active,
+.popup-leave-active {
+  transition: transform 0.4s ease, opacity 0.4s linear;
+}
+
+.popup-enter,
+.popup-leave-to {
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.toggle-main-menu-tr-enter-active,
+.toggle-main-menu-tr-leave-active {
+  transition: opacity 0.4s linear;
+}
+
+.toggle-main-menu-tr-enter,
+.toggle-main-menu-tr-leave-to {
+  opacity: 0;
 }
 
 .main-menu-enter-active,
@@ -453,12 +470,13 @@ svg * {
   bottom: 10px;
   left: 10px;
   right: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  z-index: 2;
 }
 
 .tails-list ul {
   list-style: none;
-  max-height: calc(100% - 30px);
+  max-height: calc(100% - 68px);
   overflow: auto;
 }
 
@@ -478,6 +496,45 @@ svg * {
   stroke: #ff0000;
   fill: rgba(255,0,0,0.3)
 }
+
+.check-out {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+.popup .m-button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+.popup {
+  position: fixed;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 3;
+}
+
+.popup .close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup .close-button i {
+  font-size: 25px;
+}
+
 
 @media (prefers-color-scheme: dark) {
   .tails-list li {

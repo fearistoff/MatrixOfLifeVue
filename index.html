@@ -810,12 +810,14 @@
         <i class="fas fa-bars main-menu-show"></i>
         <i class="fas fa-arrow-left main-menu-hide"></i>
     </div>
-    <div @click="tailListShow = !tailListShow" :class="{reverse: !tailListShow, hide: !mainMenuHidden}" class="toggle-main-menu right">
-      <i class="fas fa-ellipsis-v main-menu-show"></i>
-      <i class="fas fa-arrow-right main-menu-hide"></i>
-    </div>
+    <transition name="toggle-main-menu-tr">
+      <div v-if="showResults && mainMenuHidden" @click="tailListShow = !tailListShow" :class="{reverse: !tailListShow}" class="toggle-main-menu right">
+        <i class="fas fa-ellipsis-v main-menu-show"></i>
+        <i class="fas fa-arrow-right main-menu-hide"></i>
+      </div>
+    </transition>
     <transition name="back">
-      <div class="background-block" v-if="savesListDisplay" @click="savesListDisplay = false; deleteMode = false;">
+      <div class="background-block" v-if="savesListDisplay || tailListShow" @click="savesListDisplay = false; deleteMode = false;">
       </div>
     </transition>
     <transition name="list">
@@ -841,9 +843,18 @@
         <h2>Список хвостов</h2>
         <h3 v-if="currentMatrix.tailsList.length == 0">Список пуст...</h3>
         <ul>
-          <li v-for="tailItem in currentMatrix.tailsList" :key="tailItem" class="tails-list-item" @click="selectTail(tailItem)" :class="{selected: tailItem.tag == selectedTail.tag}">
+          <li v-for="tailItem in currentMatrix.tailsList" :key="tailItem" class="tails-list-item" @click="showTailInfo(tailItem); tailListShow = false" :class="{selected: tailItem.tag == selectedTail.tag}">
             {{tailItem.energy}}: {{tailItem.name}}</li>
         </ul>
+        <div class="check-out m-button" @click="checkOutTailSelection()">Убрать выделение</div>
+      </div>
+    </transition>
+    <transition name="popup">
+      <div class="popup block-design" v-if="popupData.show">
+        <h2>{{popupData.header}}</h2>
+        <div v-html="popupData.body"></div>
+        <div v-if="popupData.buttonText" class="m-button" @click="popupData.buttonFunction(); closePopup()">{{popupData.buttonText}}</div>
+        <div @click="closePopup()" class="close-button"><i class="fas fa-times"></i></div>
       </div>
     </transition>
   </div>
