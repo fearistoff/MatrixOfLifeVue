@@ -18,7 +18,7 @@
 </head>
 
 <body>
-  <div id="app">
+  <div id="app" v-cloak>
     <transition name="logo">
       <div class="logo" v-if="!showResults">
         <svg width="100%" height="99%" viewBox="0 0 400 400">
@@ -45,7 +45,7 @@
         </svg>
       </div>
     </transition>
-    <transition name="result">
+    <transition name="result-tr">
       <div v-if="showResults" class="result">
         <svg width="100%" height="99%" viewBox="0 0 390 380">
           <g transform="translate(0,-191.16)">
@@ -806,18 +806,8 @@
         <div class="saves m-button" @click="savesListDisplay = true">Сохранённые матрицы</div>
       </div>
     </transition>
-    <div @click="mainMenuHidden = !mainMenuHidden" :class="{reverse: mainMenuHidden, hide: tailListShow}" class="toggle-main-menu">
-        <i class="fas fa-bars main-menu-show"></i>
-        <i class="fas fa-arrow-left main-menu-hide"></i>
-    </div>
-    <transition name="toggle-main-menu-tr">
-      <div v-if="showResults && mainMenuHidden" @click="tailListShow = !tailListShow" :class="{reverse: !tailListShow}" class="toggle-main-menu right">
-        <i class="fas fa-ellipsis-v main-menu-show"></i>
-        <i class="fas fa-arrow-right main-menu-hide"></i>
-      </div>
-    </transition>
     <transition name="back">
-      <div class="background-block" v-if="savesListDisplay || tailListShow" @click="savesListDisplay = false; deleteMode = false;">
+      <div class="background-block" v-if="savesListDisplay || infoShow || popupData.show" @click="savesListDisplay = false; deleteMode = false;">
       </div>
     </transition>
     <transition name="list">
@@ -838,23 +828,57 @@
         </ul>
       </div>
     </transition>
-    <transition name="tails">
-      <div class="tails-list block-design" v-if="tailListShow">
-        <h2>Список хвостов</h2>
-        <h3 v-if="currentMatrix.tailsList.length == 0">Список пуст...</h3>
-        <ul>
-          <li v-for="tailItem in currentMatrix.tailsList" :key="tailItem" class="tails-list-item" @click="showTailInfo(tailItem); tailListShow = false" :class="{selected: tailItem.tag == selectedTail.tag}">
-            {{tailItem.energy}}: {{tailItem.name}}</li>
-        </ul>
-        <div class="check-out m-button" @click="checkOutTailSelection()">Убрать выделение</div>
+    <transition name="info-tr">
+      <div class="info block-design" v-if="infoShow">
+        <h2>Информация</h2>
+        <div class="info-body">
+          <div class="info-container" :class="{one: tabId === 0, two: tabId === 1, three: tabId === 2, four: tabId === 3}">
+            <div class="info-item">
+              <h3 v-if="currentMatrix.tailsList.length == 0">Список пуст...</h3>
+              <ul>
+                <li v-for="tailItem in currentMatrix.tailsList" :key="tailItem" class="info-list-item" @click="showTailInfo(tailItem); infoShow = false" :class="{selected: tailItem.tag == selectedTail.tag}">
+                  {{tailItem.energy}}: {{tailItem.name}}</li>
+              </ul>
+            </div>
+            <div class="info-item">
+              <h4>таблица здоровья...</h4>
+            </div>
+            <div class="info-item">
+              <h4>мужское-женское...</h4>
+            </div>
+            <div class="info-item">
+              <h4>земля-воздух...</h4>
+            </div>
+          </div>
+        </div>
+        <div class="tabs">
+          <div @click="tabId = 0" class="m-button" :class="{'selected-tab': tabId === 0}"><i class="fas fa-align-left"></i><span>Хвосты</span></div><!-- список хвостов -->
+          <div @click="tabId = 1" class="m-button" :class="{'selected-tab': tabId === 1}"><i class="fas fa-heart"></i><span>Здоровье</span></div><!-- таблица здоровья -->
+          <div @click="tabId = 2" class="m-button" :class="{'selected-tab': tabId === 2}"><i class="fas fa-venus-mars"></i><span>Муж/жен</span></div><!-- мужское-женское -->
+          <div @click="tabId = 3" class="m-button" :class="{'selected-tab': tabId === 3}"><i class="fas fa-image"></i><span>Зем/воз</span></div><!-- земля-воздух -->
+        </div>
       </div>
     </transition>
     <transition name="popup">
-      <div class="popup block-design" v-if="popupData.show">
-        <h2>{{popupData.header}}</h2>
-        <div v-html="popupData.body"></div>
-        <div v-if="popupData.buttonText" class="m-button" @click="popupData.buttonFunction(); closePopup()">{{popupData.buttonText}}</div>
-        <div @click="closePopup()" class="close-button"><i class="fas fa-times"></i></div>
+      <div class="popup" v-if="popupData.show" @click.self="closePopup()">
+        <div class="block-design">
+          <div @click="closePopup()" class="close-button"><i class="fas fa-times"></i></div>
+          <h2>{{popupData.header}}</h2>
+          <div v-html="popupData.body"></div>
+          <div v-if="popupData.buttonText" class="m-button" @click="popupData.buttonFunction(); closePopup()">{{popupData.buttonText}}</div>
+        </div>
+      </div>
+    </transition>
+    <transition name="toggle-tail-menu-tr">
+      <div v-if="!infoShow && !popupData.show" @click="mainMenuHidden = !mainMenuHidden" :class="{reverse: mainMenuHidden, hide: infoShow}" class="toggle-main-menu">
+        <i class="fas fa-bars main-menu-show"></i>
+        <i class="fas fa-arrow-left main-menu-hide"></i>
+    </div>
+    </transition>
+    <transition name="toggle-tail-menu-tr">
+      <div v-if="showResults && mainMenuHidden && !popupData.show" @click="infoShow = !infoShow" :class="{reverse: !infoShow}" class="toggle-main-menu right">
+        <i class="fas fa-ellipsis-v main-menu-show"></i>
+        <i class="fas fa-arrow-right main-menu-hide"></i>
       </div>
     </transition>
   </div>

@@ -29,7 +29,7 @@ const mainTailList = {
   },
   "t15_7": {
       "name": "Агрессия",
-      "description": "Три энергии внизу матрицы судьбы (на рисунке обведены красной линией) называют «кармическим хвостом». Это кармический багаж, который человек принес из прошлых жизней. При рождении у человека эти энергии всегда в минусе. Трактовка каждой энергии в кармическом хвосте меняется, в зависимости от арканов, которые находятся рядом"
+      "description": "Три энергии внизу матрицы судьбы (на рисунке обведены красной линией) называют «кармическим хвостом». Это кармический багаж, который человек принес из прошлых жизней. При рождении у человека эти энергии всегда в минусе. Трактовка каждой энергии в кармическом хвосте меняется, в зависимости от Энергияов, которые находятся рядом"
   },
   "t15_5_8": {
       "name": "Страсти в семье",
@@ -91,7 +91,30 @@ const mainTailList = {
   //     "name": "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ",
   //     "description": ""
   // }
-}
+}, arcanesList = [null, 
+  'Энергия мага', 
+  'Энергия единства, равенства и гармонии', 
+  'Энергия плодородия, зачатия', 
+  'Энергия хозияна', 
+  'Энергия учителя и ученика', 
+  'Энергия любви и отношений', 
+  'Энергия воина, победителя, движения вперёд', 
+  'Энергия кармической справедливости', 
+  'Энергия мудреца, отшельника', 
+  'Энергия фортуны, удачи', 
+  'Энергия силы и потенциала', 
+  'Энергия нового видения и служения людям', 
+  'Энергия жизни и смерти, трансформации', 
+  'Энергия исскуства и зрелой души', 
+  'Энергия проявления, искушения и тёмного ангела', 
+  'Энергия духовного пробуждения', 
+  'Энергия звезды', 
+  'Энергия магии, луны и освобождения от страхов', 
+  'Энергия солнца и процветания', 
+  'Энергия яснознания и связи с родом', 
+  'Энергия мира, миротворца', 
+  'Энергия высшей духовной свободы'];
+
 new Vue({
   el: '#app',
   data: {
@@ -111,8 +134,11 @@ new Vue({
       buttonFunction: undefined
     },
     tailsList: [],
-    tailListShow: false,
-    selectedTail: {name: undefined, description: undefined, energy: undefined, tag: undefined}
+    infoShow: false,
+    selectedTail: {name: undefined, description: undefined, energy: undefined, tag: undefined},
+    selectedEnergy: {id: undefined, arcane: undefined, neighborPairList: undefined, pairElement: undefined},
+    tabId: 0,
+    energiesList: []
   },
   methods: {
     loadMatrix: function (newMatrix) {
@@ -273,6 +299,13 @@ new Vue({
       data.c51 = this.matrixElement(data.c41.arcane + data.c61.arcane, 'c51');
       data.s01 = this.matrixElement(data.c41.arcane + data.c51.arcane, 's01');
       data.s02 = this.matrixElement(data.c61.arcane + data.c51.arcane, 's02');
+      // let list = [];
+      // for(key in data) {
+      //   if (key !== 'date' && key !== 'name') {
+      //     list.push(data[key]);
+      //   }
+      // };
+      // data.energiesList = list;
       // под таблицей
       // небо - земля 
       data.b01 = this.matrixElement(data.u16.arcane + data.u48.arcane, 'b01', false);
@@ -493,7 +526,11 @@ new Vue({
     },
     selectTail: function (tail) {
       this.selectedTail =  tail;
-      this.tailListShow = false;
+      this.infoShow = false;
+    },
+    selectEnergy: function (energy) {
+      this.selectedEnergy =  energy;
+      this.infoShow = false;
     },
     showPopup: function (header, body, buttonText, buttonFunction) {
       this.popupData.header = header;
@@ -510,11 +547,34 @@ new Vue({
       this.popupData.buttonFunction = undefined;
     },
     showTailInfo: function(tail) {
-      const description = `<span class="position">${tail.position ? tail.position.toLowerCase() : ''}</span><br/><p>${tail.description}</p>`;
-      this.showPopup(tail.name, description, 'Показать на матрице', this.selectTail.bind(this, tail));
+      const description = `<span class="position">${tail.position ? tail.position.toLowerCase() : ''}</span><br v-if="tail.position"/><p>${tail.description}</p>`;
+      let buttonText, buttonFunction;
+      if (tail.tag !== this.selectedTail.tag) {
+        buttonText = 'Показать на матрице';
+        buttonFunction = this.selectTail.bind(this, tail);
+      } else {
+        buttonText = 'Отменить выделение';
+        buttonFunction = this.checkOutTailSelection.bind(this);
+      }
+      this.showPopup(tail.name, description, buttonText, buttonFunction);
+    },
+    showEnergyInfo: function(enegry) {
+      const description = `<span class="position">${enegry.position ? enegry.position.toLowerCase() : ''}</span><br v-if="enegry.position"/><p>${enegry.description}</p>`;
+      let buttonText, buttonFunction;
+      if (enegry.id !== this.selectedEnergy.id) {
+        buttonText = 'Показать на матрице';
+        buttonFunction = this.selectEnergy.bind(this, enegry);
+      } else {
+        buttonText = 'Отменить выделение';
+        buttonFunction = this.checkOutEnergySelection.bind(this);
+      }
+      this.showPopup(tail.name, description, buttonText, buttonFunction);
     },
     checkOutTailSelection: function() {
       this.selectedTail = {name: undefined, description: undefined, energy: undefined, tag: undefined};
+    },
+    checkOutEnergySelection: function() {
+      this.selectedEnergy = {id: undefined, arcane: undefined, neighborPairList: undefined, pairElement: undefined};
     }
   }
 });
