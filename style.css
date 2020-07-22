@@ -625,7 +625,7 @@ path.tail.selected {
   bottom: -100px;
   left: -100px;
   right: -100px;
-  padding: 10px 110px;
+  padding: 110px 110px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -651,6 +651,12 @@ path.tail.selected {
   position: relative;
   padding: 20px 20px 58px 20px;
   min-width: calc(100% - 40px);
+  max-height: calc(100% - 40px);
+}
+
+.popup-body {
+  max-height: 600px;
+  overflow-y: auto;
 }
 
 .popup-body p {
@@ -752,6 +758,12 @@ path.tail.selected {
   font-size: 20px;
 }
 
+.brasket {
+  fill:none;
+  stroke:#000000;
+  stroke-width:3px;
+}
+
 @media (prefers-color-scheme: dark) {
   .info-list-item {
     border-top: solid 1px #2e2e2e;
@@ -835,5 +847,9 @@ path.tail.selected {
 
   .flex-row-item span:first-child {
     color: #d1d1d1;
+  }
+
+  .brasket {
+    stroke: #ffffff;
   }
 }
