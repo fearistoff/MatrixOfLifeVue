@@ -180,6 +180,16 @@ h3 {
   transition: all 0.5s ease;
 }
 
+.list-animate-item .text {
+  display: flex;
+  flex-flow: column;
+}
+
+.list-animate-item .text span:last-child {
+  font-size: 10px;
+  color: #757575;
+}
+
 .list-animate-item:first-child {
   border-top: none;
 }
@@ -310,13 +320,13 @@ svg * {
   transform: translate(110%, 0px);
 }
 
-.popup-enter-active,
-.popup-leave-active {
+.popup-tr-enter-active,
+.popup-tr-leave-active {
   transition: transform 0.4s ease, opacity 0.4s linear;
 }
 
-.popup-enter,
-.popup-leave-to {
+.popup-tr-enter,
+.popup-tr-leave-to {
   transform: scale(0.8);
   opacity: 0;
 }
@@ -382,19 +392,15 @@ svg * {
   top: 0px;
   right: 0px;
 }
-.tail {
+path.tail {
   transition: fill 0.3s linear;
   stroke: #000088;
   fill: rgba(0, 0, 136, 0);
   stroke-width: 1px;
 }
 
-.tail:hover {
+path.tail:hover {
   fill: rgba(0, 0, 136, 0.4);
-}
-
-.tail.show {
-  display: inline;
 }
 
 .background-m {
@@ -508,6 +514,9 @@ svg * {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  display: flex;
+  flex-flow: column;
+  justify-content: start;
 }
 
 .info-list-item:first-child {
@@ -516,6 +525,11 @@ svg * {
 
 .info-list-item.selected {
   color: red;
+}
+
+.info-list-item .energy {
+  font-size: 10px;
+  color: #757575;
 }
 
 .info-container {
@@ -543,14 +557,50 @@ svg * {
   transform: translate(-75%, 0px);
 }
 
+.row-level-other {
+  display: flex; 
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.column-level-other {
+  display: flex; 
+  flex-flow: column;
+  align-items: center;
+}
+
+.other-arcane {
+  width: 40px;
+  margin: 5px;
+}
+
+.curve-brasket {
+  font-size: 40px;
+  transform: scale(1, 2);
+  transform-origin: 0px 29px;
+}
+
+.curve-brasket.medium {
+  transform: scale(1, 3.6);
+}
+
+.curve-brasket.large {
+  transform: scale(1, 7);
+}
+
+.spirit h4 {
+  transform: translate(0px, -30px);
+  position: absolute;
+}
+
 .info-item {
-  width: 20%;
+  width: 25%;
   flex: 1;
   height: 100%;
   overflow-y: auto;
 }
 
-.tail.selected {
+path.tail.selected {
   stroke: #ff0000;
   fill: rgba(255,0,0,0.3)
 }
@@ -571,13 +621,15 @@ svg * {
 
 .popup {
   position: fixed;
-  top: 10px;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
+  top: -100px;
+  bottom: -100px;
+  left: -100px;
+  right: -100px;
+  padding: 10px 110px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .popup .close-button {
@@ -601,6 +653,15 @@ svg * {
   min-width: calc(100% - 40px);
 }
 
+.popup-body p {
+  margin: 10px 0;
+}
+
+.popup-body h3 {
+  margin: 10px 0;
+  font-size: 20px;
+}
+
 .tabs {
   display: flex;
   justify-content: space-between;
@@ -614,6 +675,7 @@ svg * {
   flex-flow: column;
   flex-wrap: wrap;
   flex: 1;
+  background-color: initial;
 }
 
 .tabs > .m-button span {
@@ -621,16 +683,77 @@ svg * {
 }
 
 .tabs .selected-tab {
-  background-color: #00d48d;
-  color: #000000;
+  background-color: #00ffaa;
 }
 
 .tabs .fas {
   font-size: 20px;
 }
 
+.table-to-list {
+  border-top: solid 1px #d1d1d1;
+}
+
+.table-to-list:first-child {
+  border-top: none;
+}
+
+.table-to-list h4 {
+  padding: 10px 0;
+}
+
+.table-to-list p {
+  padding: 10px 0;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-row-item {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  padding: 5px;
+}
+
+.flex-row.tail {
+  border: 2px solid blue;
+  border-radius: 40px;
+}
+
+.flex-row-item span:first-child {
+  font-size: 10px;
+  color: #757575;
+}
+
+.flex-row-item span:last-child {
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.reference {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reference > * {
+  font-size: 20px;
+}
+
 @media (prefers-color-scheme: dark) {
-  .info li {
+  .info-list-item {
     border-top: solid 1px #2e2e2e;
   }
 
@@ -645,11 +768,11 @@ svg * {
     fill: #ffffff;
   }
 
-  .tail:hover {
+  path.tail:hover {
     fill: rgba(127, 127, 255, 0.4);
   }
   
-  .tail {
+  path.tail {
     stroke: #7f7fff;
   }
 
@@ -699,7 +822,18 @@ svg * {
   }
 
   .tabs .selected-tab {
-    background-color: #8d7dff;
-    color: #000000;
+    background-color: #483d8b;
+  }
+  
+  .info-list-item .energy {
+    color: #d1d1d1;
+  }
+
+  .list-animate-item .text span:last-child {
+    color: #d1d1d1;
+  }
+
+  .flex-row-item span:first-child {
+    color: #d1d1d1;
   }
 }

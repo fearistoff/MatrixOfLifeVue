@@ -92,28 +92,28 @@ const mainTailList = {
   //     "description": ""
   // }
 }, arcanesList = [null, 
-  'Энергия мага', 
-  'Энергия единства, равенства и гармонии', 
-  'Энергия плодородия, зачатия', 
-  'Энергия хозияна', 
-  'Энергия учителя и ученика', 
-  'Энергия любви и отношений', 
-  'Энергия воина, победителя, движения вперёд', 
-  'Энергия кармической справедливости', 
-  'Энергия мудреца, отшельника', 
-  'Энергия фортуны, удачи', 
-  'Энергия силы и потенциала', 
-  'Энергия нового видения и служения людям', 
-  'Энергия жизни и смерти, трансформации', 
-  'Энергия исскуства и зрелой души', 
-  'Энергия проявления, искушения и тёмного ангела', 
-  'Энергия духовного пробуждения', 
-  'Энергия звезды', 
-  'Энергия магии, луны и освобождения от страхов', 
-  'Энергия солнца и процветания', 
-  'Энергия яснознания и связи с родом', 
-  'Энергия мира, миротворца', 
-  'Энергия высшей духовной свободы'];
+  {name: 'Энергия мага', description: ''},
+  {name: 'Энергия единства, равенства и гармонии', description: ''}, 
+  {name: 'Энергия плодородия, зачатия', description: ''}, 
+  {name: 'Энергия хозияна', description: ''}, 
+  {name: 'Энергия учителя и ученика', description: ''}, 
+  {name: 'Энергия любви и отношений', description: ''}, 
+  {name: 'Энергия воина, победителя, движения вперёд', description: ''}, 
+  {name: 'Энергия кармической справедливости', description: ''}, 
+  {name: 'Энергия мудреца, отшельника', description: ''}, 
+  {name: 'Энергия фортуны, удачи', description: ''}, 
+  {name: 'Энергия силы и потенциала', description: ''}, 
+  {name: 'Энергия нового видения и служения людям', description: ''}, 
+  {name: 'Энергия жизни и смерти, трансформации', description: ''}, 
+  {name: 'Энергия исскуства и зрелой души', description: ''}, 
+  {name: 'Энергия проявления, искушения и тёмного ангела', description: ''}, 
+  {name: 'Энергия духовного пробуждения', description: ''}, 
+  {name: 'Энергия звезды', description: ''}, 
+  {name: 'Энергия магии, луны и освобождения от страхов', description: ''}, 
+  {name: 'Энергия солнца и процветания', description: ''}, 
+  {name: 'Энергия яснознания и связи с родом', description: ''}, 
+  {name: 'Энергия мира, миротворца', description: ''}, 
+  {name: 'Энергия высшей духовной свободы', description: ''}];
 
 new Vue({
   el: '#app',
@@ -136,7 +136,6 @@ new Vue({
     tailsList: [],
     infoShow: false,
     selectedTail: {name: undefined, description: undefined, energy: undefined, tag: undefined},
-    selectedEnergy: {id: undefined, arcane: undefined, neighborPairList: undefined, pairElement: undefined},
     tabId: 0,
     energiesList: []
   },
@@ -547,7 +546,7 @@ new Vue({
       this.popupData.buttonFunction = undefined;
     },
     showTailInfo: function(tail) {
-      const description = `<span class="position">${tail.position ? tail.position.toLowerCase() : ''}</span><br v-if="tail.position"/><p>${tail.description}</p>`;
+      const description = `<span class="position">${tail.position ? tail.position.toLowerCase() + '</span><br/>' : '</span>'}<p>${tail.description}</p>`;
       let buttonText, buttonFunction;
       if (tail.tag !== this.selectedTail.tag) {
         buttonText = 'Показать на матрице';
@@ -556,25 +555,39 @@ new Vue({
         buttonText = 'Отменить выделение';
         buttonFunction = this.checkOutTailSelection.bind(this);
       }
-      this.showPopup(tail.name, description, buttonText, buttonFunction);
+      this.showPopup(tail.name, description);
     },
     showEnergyInfo: function(enegry) {
-      const description = `<span class="position">${enegry.position ? enegry.position.toLowerCase() : ''}</span><br v-if="enegry.position"/><p>${enegry.description}</p>`;
-      let buttonText, buttonFunction;
-      if (enegry.id !== this.selectedEnergy.id) {
-        buttonText = 'Показать на матрице';
-        buttonFunction = this.selectEnergy.bind(this, enegry);
-      } else {
-        buttonText = 'Отменить выделение';
-        buttonFunction = this.checkOutEnergySelection.bind(this);
-      }
-      this.showPopup(tail.name, description, buttonText, buttonFunction);
+      const description = `<span class="position">${enegry.position ? enegry.position.toLowerCase() + '</span><br/>' : '</span>'}<p>${arcanesList[enegry.arcane].description}</p>`;
+      this.showPopup(arcanesList[enegry.arcane].name, description);
     },
     checkOutTailSelection: function() {
       this.selectedTail = {name: undefined, description: undefined, energy: undefined, tag: undefined};
     },
     checkOutEnergySelection: function() {
       this.selectedEnergy = {id: undefined, arcane: undefined, neighborPairList: undefined, pairElement: undefined};
+    },
+    showReference: function() {
+      this.showPopup("Справка", `
+        <h3>Хвосты</h3>
+        <p>Информация по хвостам доступна в меню "Информация" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-ellipsis-v"></i>)
+        во вкладке "Хвосты" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-align-left"></i>) (открывается по умолчанию).</p> 
+        <h3>Выделение хвоста</h3>
+        <p>По нажатию по хвосту в списке открывается окно информации по хвосту, где можно по нажатию соответствующей кнопки можно показать выбранный хвост
+        на экране с матрицей. Убрать выделение можно выбрав снова тот же хвост и нажать в окне информации соостветствующую кнопку.</p>
+        <h3>Таблица здоровья</h3>
+        <p>Информация по таблице здоровья доступна в меню "Информация" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-ellipsis-v"></i>)
+        во вкладке "Здоровье" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-heart"></i>). На данной вкладке также можно нажимать 
+        на арканы для подробной информации по ним.</p>
+        <h3>Небо-земля, мужское-женское, духовное</h3>
+        <p>Информация по линиям земли, неба, мужского, женского и духовному доступна в меню "Информация" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-ellipsis-v"></i>)
+        во вкладке "Прочее" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-info"></i>). Также как и во вкладке "Здоровье" здесь можно нажимать 
+        на арканы для подробной информации по ним.</p>
+        <h3>Ввод данных для Пифагорейской нумерологии</h3>
+        <p>Для корректной информации по Пифагорейской нумерологии очень важно полностью написать имя при рождении. 
+        Соответствующая информация доступна в меню "Информация" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-ellipsis-v"></i>) 
+        во вкладке "Пифагор" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-calculator"></i>).</p>
+      `);
     }
   }
 });

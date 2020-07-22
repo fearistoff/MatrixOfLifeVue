@@ -804,10 +804,11 @@
         <input v-model="date" type="date" class="date" placeholder="Введите дату" value="2020-06-12">
         <div class="calculate m-button" @click="calculate">Посчитать</div>
         <div class="saves m-button" @click="savesListDisplay = true">Сохранённые матрицы</div>
+        <div class="reference" @click="showReference()"><i class="far fa-question-circle"></i></div>
       </div>
     </transition>
     <transition name="back">
-      <div class="background-block" v-if="savesListDisplay || infoShow || popupData.show" @click="savesListDisplay = false; deleteMode = false;">
+      <div class="background-block" v-if="savesListDisplay || infoShow" @click="savesListDisplay = false; deleteMode = false;">
       </div>
     </transition>
     <transition name="list">
@@ -816,7 +817,7 @@
         <transition-group name="list-animate" tag="ul">
           <li v-for="(savesItem, index) in saves" :key="savesItem" class="list-animate-item"
             @click="loadMatrix(savesItem)">
-            <span>{{savesItem.name}} ({{getAge(savesItem.date)}})</span>
+            <div class="text"><span>{{savesItem.name}} ({{getAge(savesItem.date)}})</span><span>{{savesItem.date}}</span></div>
             <transition name="delete-list-item">
               <span v-if="deleteMode" @click="deleteMatrix(index)" class="delete-matrix">Удалить</span>
             </transition>
@@ -836,35 +837,184 @@
             <div class="info-item">
               <h3 v-if="currentMatrix.tailsList.length == 0">Список пуст...</h3>
               <ul>
-                <li v-for="tailItem in currentMatrix.tailsList" :key="tailItem" class="info-list-item" @click="showTailInfo(tailItem); infoShow = false" :class="{selected: tailItem.tag == selectedTail.tag}">
-                  {{tailItem.energy}}: {{tailItem.name}}</li>
+                <li v-for="tailItem in currentMatrix.tailsList" v-if="!tailItem.tag.includes('t')" :key="tailItem" class="info-list-item" @click="showTailInfo(tailItem)" :class="{selected: tailItem.tag == selectedTail.tag}">
+                  <span class="name">{{tailItem.name}}</span><span class="energy">{{tailItem.energy}}</span></li>
               </ul>
             </div>
             <div class="info-item">
-              <h4>таблица здоровья...</h4>
+              <div class="table-to-list">
+                <h4>7. Сахасрара</h4>
+                <div :class="{tail: currentMatrix.tailsList.t11_t13 || currentMatrix.tailsList.t13_t11}" class="flex-row">
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t11)"><span>Физика</span><span>{{currentMatrix.t11.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t12)"><span>Энергия</span><span>{{currentMatrix.t12.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t13)"><span>Эмоции</span><span>{{currentMatrix.t13.arcane}}</span></div>
+                </div>
+                <p>Волосы, мозг, верхняя часть черепа</p>
+              </div>
+              <div class="table-to-list">
+                <h4>6. Аджна</h4>
+                <div :class="{tail: currentMatrix.tailsList.t21_t23 || currentMatrix.tailsList.t23_t21}" class="flex-row">
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t21)"><span>Физика</span><span>{{currentMatrix.t21.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t22)"><span>Энергия</span><span>{{currentMatrix.t22.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t23)"><span>Эмоции</span><span>{{currentMatrix.t23.arcane}}</span></div>
+                </div>
+                <p>Глаза, уши, лицо, затылок, губы</p>
+              </div>
+              <div class="table-to-list">
+                <h4>5. Вишухда</h4>
+                <div :class="{tail: currentMatrix.tailsList.t31_t33 || currentMatrix.tailsList.t33_t31}" class="flex-row">
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t31)"><span>Физика</span><span>{{currentMatrix.t31.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t32)"><span>Энергия</span><span>{{currentMatrix.t32.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t33)"><span>Эмоции</span><span>{{currentMatrix.t33.arcane}}</span></div>
+                </div>
+                <p>Горло, нижняя челюсть, щитовидная железа, плечи, руки</p>
+              </div>
+              <div class="table-to-list">
+                <h4>4. Анахата</h4>
+                <div :class="{tail: currentMatrix.tailsList.t41_t43 || currentMatrix.tailsList.t43_t41}" class="flex-row">
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t41)"><span>Физика</span><span>{{currentMatrix.t41.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t42)"><span>Энергия</span><span>{{currentMatrix.t42.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t43)"><span>Эмоции</span><span>{{currentMatrix.t43.arcane}}</span></div>
+                </div>
+                <p>Сердце, лёгкие, бронхи, рёбра, грудь</p>
+              </div>
+              <div class="table-to-list">
+                <h4>3. Манипура</h4>
+                <div :class="{tail: currentMatrix.tailsList.t51_t53 || currentMatrix.tailsList.t53_t51}" class="flex-row">
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t51)"><span>Физика</span><span>{{currentMatrix.t51.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t52)"><span>Энергия</span><span>{{currentMatrix.t52.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t53)"><span>Эмоции</span><span>{{currentMatrix.t53.arcane}}</span></div>
+                </div>
+                <p>Середина позвоночника, желудочно-кишечный тракт</p>
+              </div>
+              <div class="table-to-list">
+                <h4>2. Свадхистана</h4>
+                <div :class="{tail: currentMatrix.tailsList.t61_t63 || currentMatrix.tailsList.t63_t61}" class="flex-row">
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t61)"><span>Физика</span><span>{{currentMatrix.t61.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t62)"><span>Энергия</span><span>{{currentMatrix.t62.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t63)"><span>Эмоции</span><span>{{currentMatrix.t63.arcane}}</span></div>
+                </div>
+                <p>Почки, толстая кишка, надпочечники, половые органы, поясница</p>
+              </div>
+              <div class="table-to-list">
+                <h4>1. Муладхара</h4>
+                <div :class="{tail: currentMatrix.tailsList.t71_t73 || currentMatrix.tailsList.t73_t71}" class="flex-row">
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t71)"><span>Физика</span><span>{{currentMatrix.t71.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t72)"><span>Энергия</span><span>{{currentMatrix.t72.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t73)"><span>Эмоции</span><span>{{currentMatrix.t73.arcane}}</span></div>
+                </div>
+                <p>Ноги, анус, крестец, мочеполовая система</p>
+              </div>
+              <div class="table-to-list">
+                <h4>Итого</h4>
+                <div :class="{tail: currentMatrix.tailsList.t81_t83 || currentMatrix.tailsList.t83_t81}" class="flex-row">
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t81)"><span>Физика</span><span>{{currentMatrix.t81.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t82)"><span>Энергия</span><span>{{currentMatrix.t82.arcane}}</span></div>
+                  <div class="flex-row-item" @click="showEnergyInfo(currentMatrix.t83)"><span>Эмоции</span><span>{{currentMatrix.t83.arcane}}</span></div>
+                </div>
+                <p>Системы: костная, лимфотическая, кровь. Лишний вес</p>
+              </div>
             </div>
             <div class="info-item">
-              <h4>мужское-женское...</h4>
+              <div class="row-level-other">
+                <div class="column-level-other">
+                  <h4>Небо-земля</h4>
+                  <div class="row-level-other">
+                    <div>
+                      <div class="row-level-other">
+                        <div class="column-level-other">
+                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u16)"><span>20 лет</span><span>{{currentMatrix.u16.arcane}}</span></div>
+                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u48)"><span>60 лет</span><span>{{currentMatrix.u48.arcane}}</span></div>
+                        </div>
+                        <svg width="14" height="74">
+                          <path style="fill:none;stroke:#000000;stroke-width:3px;"d="m 2,2 c 2.5,0 5,2.5 5,5 v 25 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 25 c 0,2.5 -2.5,5 -5,5"/>
+                        </svg>
+                        <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b01)"><span>Небо</span><span>{{currentMatrix.b01.arcane}}</span></div>
+                      </div>
+                      <div class="row-level-other">
+                        <div class="column-level-other">
+                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u00)"><span>0 лет</span><span>{{currentMatrix.u00.arcane}}</span></div>
+                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u32)"><span>40 лет</span><span>{{currentMatrix.u32.arcane}}</span></div>
+                        </div>
+                        <svg width="14" height="74">
+                          <path style="fill:none;stroke:#000000;stroke-width:3px;"d="m 2,2 c 2.5,0 5,2.5 5,5 v 25 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 25 c 0,2.5 -2.5,5 -5,5"/>
+                        </svg>
+                        <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b02)"><span>Земля</span><span>{{currentMatrix.b02.arcane}}</span></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="row-level-other">
+                        <svg width="14" height="124">
+                          <path style="fill:none;stroke:#000000;stroke-width:3px;"d="m 2,2 c 2.5,0 5,2.5 5,5 v 50 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 50 c 0,2.5 -2.5,5 -5,5"/>
+                        </svg>
+                        <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b03)"><span></span><span>{{currentMatrix.b03.arcane}}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row-level-other">
+                    <div>
+                      <div class="row-level-other">
+                        <div class="column-level-other">
+                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u08)"><span>10 лет</span><span>{{currentMatrix.u08.arcane}}</span></div>
+                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u40)"><span>50 лет</span><span>{{currentMatrix.u40.arcane}}</span></div>
+                        </div>
+                        <svg width="14" height="74">
+                          <path style="fill:none;stroke:#000000;stroke-width:3px;"d="m 2,2 c 2.5,0 5,2.5 5,5 v 25 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 25 c 0,2.5 -2.5,5 -5,5"/>
+                        </svg>
+                        <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b04)"><span>Мужское</span><span>{{currentMatrix.b04.arcane}}</span></div>
+                      </div>
+                      <div class="row-level-other">
+                        <div class="column-level-other">
+                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u24)"><span>30 лет</span><span>{{currentMatrix.u24.arcane}}</span></div>
+                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u56)"><span>70 лет</span><span>{{currentMatrix.u56.arcane}}</span></div>
+                        </div>
+                        <svg width="14" height="74">
+                          <path style="fill:none;stroke:#000000;stroke-width:3px;"d="m 2,2 c 2.5,0 5,2.5 5,5 v 25 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 25 c 0,2.5 -2.5,5 -5,5"/>
+                        </svg>
+                        <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b05)"><span>Женское</span><span>{{currentMatrix.b05.arcane}}</span></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="row-level-other">
+                        <svg width="14" height="124">
+                          <path style="fill:none;stroke:#000000;stroke-width:3px;"d="m 2,2 c 2.5,0 5,2.5 5,5 v 50 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 50 c 0,2.5 -2.5,5 -5,5"/>
+                        </svg>
+                        <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b06)"><span></span><span>{{currentMatrix.b06.arcane}}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <h4>Мужское-женское</h4>
+                </div>
+                <div class="column-level-other spirit">
+                  <div class="row-level-other">
+                    <svg width="14" height="254">
+                      <path style="fill:none;stroke:#000000;stroke-width:3px;"d="m 2,2 c 2.5,0 5,2.5 5,5 v 115 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 115 c 0,2.5 -2.5,5 -5,5"/>
+                    </svg>
+                    <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b07)">
+                      <span>Духовное</span><span>{{currentMatrix.b07.arcane}}</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="info-item">
-              <h4>земля-воздух...</h4>
+              <h4>Пифагор...</h4>
             </div>
           </div>
         </div>
         <div class="tabs">
-          <div @click="tabId = 0" class="m-button" :class="{'selected-tab': tabId === 0}"><i class="fas fa-align-left"></i><span>Хвосты</span></div><!-- список хвостов -->
-          <div @click="tabId = 1" class="m-button" :class="{'selected-tab': tabId === 1}"><i class="fas fa-heart"></i><span>Здоровье</span></div><!-- таблица здоровья -->
-          <div @click="tabId = 2" class="m-button" :class="{'selected-tab': tabId === 2}"><i class="fas fa-venus-mars"></i><span>Муж/жен</span></div><!-- мужское-женское -->
-          <div @click="tabId = 3" class="m-button" :class="{'selected-tab': tabId === 3}"><i class="fas fa-image"></i><span>Зем/воз</span></div><!-- земля-воздух -->
+          <div @click="tabId = 0" class="m-button" :class="{'selected-tab': tabId === 0}"><i class="fas fa-align-left"></i><span>Хвосты</span></div>
+          <div @click="tabId = 1" class="m-button" :class="{'selected-tab': tabId === 1}"><i class="fas fa-heart"></i><span>Здоровье</span></div>
+          <div @click="tabId = 2" class="m-button" :class="{'selected-tab': tabId === 2}"><i class="fas fa-info"></i><span>Прочее</span></div>
+          <div @click="tabId = 3" class="m-button" :class="{'selected-tab': tabId === 3}"><i class="fas fa-calculator"></i><span>Пифагор</span></div>
         </div>
       </div>
     </transition>
-    <transition name="popup">
+    <transition name="popup-tr">
       <div class="popup" v-if="popupData.show" @click.self="closePopup()">
-        <div class="block-design">
+        <div class="block-design" :style="{'padding': popupData.buttonText ? '' : '20px'}">
           <div @click="closePopup()" class="close-button"><i class="fas fa-times"></i></div>
           <h2>{{popupData.header}}</h2>
-          <div v-html="popupData.body"></div>
+          <div v-html="popupData.body" class="popup-body"></div>
           <div v-if="popupData.buttonText" class="m-button" @click="popupData.buttonFunction(); closePopup()">{{popupData.buttonText}}</div>
         </div>
       </div>
@@ -884,5 +1034,4 @@
   </div>
   <script src="./script.js"></script>
 </body>
-
 </html>
