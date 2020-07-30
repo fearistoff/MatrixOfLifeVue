@@ -808,24 +808,37 @@
       </div>
     </transition>
     <transition name="back">
-      <div class="background-block" v-if="savesListDisplay || infoShow" @click="savesListDisplay = false; deleteMode = false;">
+      <div class="background-block" v-if="savesListDisplay || infoShow" @click="savesListDisplay = false; editMode = false;">
       </div>
     </transition>
     <transition name="list">
       <div class="saves-list block-design" v-if="savesListDisplay">
         <h2>Список матриц</h2>
-        <transition-group name="list-animate" tag="ul">
-          <li v-for="(savesItem, index) in saves" :key="savesItem" class="list-animate-item"
+        <ul class="list-animate-container">
+          <li v-if="savesItem.pinned" v-for="(savesItem, index) in saves" :key="savesItem" class="list-animate-item"
             @click="loadMatrix(savesItem)">
-            <div class="text"><span>{{savesItem.name}} ({{getAge(savesItem.date)}})</span><span>{{savesItem.date}}</span></div>
+            <div class="text"><span>{{savesItem.name}} ({{getAge(savesItem.date)}}) <i v-if="savesItem.pinned" style="font-size: 0.75em; color: #808080;" class="fas fa-thumbtack"></i></span><span>{{savesItem.date}}</span></div>
             <transition name="delete-list-item">
-              <span v-if="deleteMode" @click="deleteMatrix(index)" class="delete-matrix">Удалить</span>
+              <div v-if="editMode" >
+                <span @click="pinMatrix(index)" class="pin-matrix" :class="{pinned: savesItem.pinned}"><i class="fas fa-thumbtack"></i></span>
+                <span @click="deleteMatrix(index)" class="delete-matrix"><i class="fas fa-trash"></i></span>
+              </div>
             </transition>
           </li>
-        </transition-group>
+          <li v-if="!savesItem.pinned" v-for="(savesItem, index) in saves" :key="savesItem" class="list-animate-item"
+            @click="loadMatrix(savesItem)">
+            <div class="text"><span>{{savesItem.name}} ({{getAge(savesItem.date)}}) <i v-if="savesItem.pinned" style="font-size: 0.75em; color: #808080;" class="fas fa-thumbtack"></i></span><span>{{savesItem.date}}</span></div>
+            <transition name="delete-list-item">
+              <div v-if="editMode" >
+                <span @click="pinMatrix(index)" class="pin-matrix" :class="{pinned: savesItem.pinned}"><i class="fas fa-thumbtack"></i></span>
+                <span @click="deleteMatrix(index)" class="delete-matrix"><i class="fas fa-trash"></i></span>
+              </div>
+            </transition>
+          </li>
+        </ul>
         <h3 v-if="saves.length == 0">Список пуст...</h3>
-        <div class="toggle-b" :class="{'toggle-true': deleteMode}" @click="deleteMode = !deleteMode"><i
-            class="fas fa-trash"></i></div>
+        <div class="toggle-b" :class="{'toggle-true': editMode}" @click="editMode = !editMode"><i
+            class="fas fa-pen"></i></div>
         </ul>
       </div>
     </transition>
@@ -833,7 +846,7 @@
       <div class="info block-design" v-if="infoShow">
         <h2>Информация</h2>
         <div class="info-body">
-          <div class="info-container" :class="{one: tabId === 0, two: tabId === 1, three: tabId === 2, four: tabId === 3}">
+          <div class="info-container" :class="{one: tabId === 0, two: tabId === 1, three: tabId === 2}">
             <div class="info-item">
               <h3 v-if="currentMatrix.tailsList.length == 0">Список пуст...</h3>
               <ul>
@@ -918,35 +931,20 @@
             <div class="info-item">
               <div class="row-level-other">
                 <div class="column-level-other">
-                  <h4>Небо-земля</h4>
                   <div class="row-level-other">
                     <div>
                       <div class="row-level-other">
-                        <div class="column-level-other">
-                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u16)"><span>20 лет</span><span>{{currentMatrix.u16.arcane}}</span></div>
-                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u48)"><span>60 лет</span><span>{{currentMatrix.u48.arcane}}</span></div>
-                        </div>
-                        <svg width="14" height="74">
-                          <path class="brasket" d="m 2,2 c 2.5,0 5,2.5 5,5 v 25 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 25 c 0,2.5 -2.5,5 -5,5"/>
-                        </svg>
                         <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b01)"><span>Небо</span><span>{{currentMatrix.b01.arcane}}</span></div>
                       </div>
                       <div class="row-level-other">
-                        <div class="column-level-other">
-                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u00)"><span>0 лет</span><span>{{currentMatrix.u00.arcane}}</span></div>
-                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u32)"><span>40 лет</span><span>{{currentMatrix.u32.arcane}}</span></div>
-                        </div>
-                        <svg width="14" height="74">
-                          <path class="brasket" d="m 2,2 c 2.5,0 5,2.5 5,5 v 25 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 25 c 0,2.5 -2.5,5 -5,5"/>
-                        </svg>
                         <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b02)"><span>Земля</span><span>{{currentMatrix.b02.arcane}}</span></div>
                       </div>
                     </div>
                     <div>
                       <div class="row-level-other">
-                        <svg width="14" height="124">
-                          <path class="brasket" d="m 2,2 c 2.5,0 5,2.5 5,5 v 50 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 50 c 0,2.5 -2.5,5 -5,5"/>
-                        </svg>
+                        <svg width="14" height="74">
+                          <path class="brasket" d="m 2,2 c 2.5,0 5,2.5 5,5 v 25 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 25 c 0,2.5 -2.5,5 -5,5"/>
+                        </svg> 
                         <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b03)"><span></span><span>{{currentMatrix.b03.arcane}}</span></div>
                       </div>
                     </div>
@@ -954,41 +952,26 @@
                   <div class="row-level-other">
                     <div>
                       <div class="row-level-other">
-                        <div class="column-level-other">
-                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u08)"><span>10 лет</span><span>{{currentMatrix.u08.arcane}}</span></div>
-                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u40)"><span>50 лет</span><span>{{currentMatrix.u40.arcane}}</span></div>
-                        </div>
-                        <svg width="14" height="74">
-                          <path class="brasket" d="m 2,2 c 2.5,0 5,2.5 5,5 v 25 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 25 c 0,2.5 -2.5,5 -5,5"/>
-                        </svg>
                         <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b04)"><span>Мужское</span><span>{{currentMatrix.b04.arcane}}</span></div>
                       </div>
                       <div class="row-level-other">
-                        <div class="column-level-other">
-                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u24)"><span>30 лет</span><span>{{currentMatrix.u24.arcane}}</span></div>
-                          <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.u56)"><span>70 лет</span><span>{{currentMatrix.u56.arcane}}</span></div>
-                        </div>
-                        <svg width="14" height="74">
-                          <path class="brasket" d="m 2,2 c 2.5,0 5,2.5 5,5 v 25 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 25 c 0,2.5 -2.5,5 -5,5"/>
-                        </svg>
                         <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b05)"><span>Женское</span><span>{{currentMatrix.b05.arcane}}</span></div>
                       </div>
                     </div>
                     <div>
                       <div class="row-level-other">
-                        <svg width="14" height="124">
-                          <path class="brasket" d="m 2,2 c 2.5,0 5,2.5 5,5 v 50 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 50 c 0,2.5 -2.5,5 -5,5"/>
-                        </svg>
+                        <svg width="14" height="74">
+                          <path class="brasket" d="m 2,2 c 2.5,0 5,2.5 5,5 v 25 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 25 c 0,2.5 -2.5,5 -5,5"/>
+                        </svg> 
                         <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b06)"><span></span><span>{{currentMatrix.b06.arcane}}</span></div>
                       </div>
                     </div>
                   </div>
-                  <h4>Мужское-женское</h4>
                 </div>
                 <div class="column-level-other spirit">
                   <div class="row-level-other">
-                    <svg width="14" height="254">
-                      <path class="brasket" d="m 2,2 c 2.5,0 5,2.5 5,5 v 115 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 115 c 0,2.5 -2.5,5 -5,5"/>
+                    <svg width="14" height="124">
+                      <path class="brasket" d="m 2,2 c 2.5,0 5,2.5 5,5 v 50 c 0,2.5 2.5,5 5,5 2.5,0 2.5,0 0,0 -2.5,0 -5,2.5 -5,5 v 50 c 0,2.5 -2.5,5 -5,5"/>
                     </svg>
                     <div class="flex-row-item other-arcane" @click="showEnergyInfo(currentMatrix.b07)">
                       <span>Духовное</span><span>{{currentMatrix.b07.arcane}}</span></div>
@@ -996,26 +979,25 @@
                 </div>
               </div>
             </div>
-            <div class="info-item">
-              <h4>Пифагор...</h4>
-            </div>
           </div>
         </div>
         <div class="tabs">
           <div @click="tabId = 0" class="m-button" :class="{'selected-tab': tabId === 0}"><i class="fas fa-align-left"></i><span>Хвосты</span></div>
           <div @click="tabId = 1" class="m-button" :class="{'selected-tab': tabId === 1}"><i class="fas fa-heart"></i><span>Здоровье</span></div>
           <div @click="tabId = 2" class="m-button" :class="{'selected-tab': tabId === 2}"><i class="fas fa-info"></i><span>Прочее</span></div>
-          <div @click="tabId = 3" class="m-button" :class="{'selected-tab': tabId === 3}"><i class="fas fa-calculator"></i><span>Пифагор</span></div>
         </div>
       </div>
     </transition>
     <transition name="popup-tr">
       <div class="popup" v-if="popupData.show" @click.self="closePopup()">
-        <div class="block-design" :style="{'padding': popupData.buttonText ? '' : '20px'}">
+        <div class="block-design" :style="{'padding': popupData.firstButtonText ? popupData.secondButtonText ? '20px 20px 106px 20px' : '' : '20px'}">
           <div @click="closePopup()" class="close-button"><i class="fas fa-times"></i></div>
           <h2>{{popupData.header}}</h2>
           <div v-html="popupData.body" class="popup-body"></div>
-          <div v-if="popupData.buttonText" class="m-button" @click="popupData.buttonFunction(); closePopup()">{{popupData.buttonText}}</div>
+          <div v-if="popupData.firstButtonText" class="popup-buttons-container">
+            <div class="m-button" @click="popupData.firstButtonFunction(); closePopup()">{{popupData.firstButtonText}}</div>
+            <div v-if="popupData.secondButtonText" class="m-button" @click="popupData.secondButtonFunction(); closePopup()">{{popupData.secondButtonText}}</div>
+          </div>
         </div>
       </div>
     </transition>

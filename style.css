@@ -102,15 +102,14 @@ h3 {
   right: 20px;
 }
 
-.saves-list ul {
+.list-animate-container {
   margin-top: 40px;
   max-height: 340px;
   overflow: auto;
 }
-
 .delete-matrix {
   height: 30px;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   border-radius: 15px;
@@ -119,9 +118,25 @@ h3 {
   padding: 0 10px;
 }
 
+.pin-matrix {
+  height: 30px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background-color: #ffffc0;
+  color: #808000;
+  padding: 0 10px;
+}
+
+.pin-matrix.pinned {
+  background-color: yellow;
+  color: #000000;
+}
+
 .toggle-b {
-  color: red;
-  background-color: #ffe4e4;
+  color: blue;
+  background-color: #e4e4ff;
   position: absolute;
   top: 10px;
   right: 20px;
@@ -135,8 +150,8 @@ h3 {
 }
 
 .toggle-b.toggle-true {
-  color: #ffe4e4;
-  background-color: red;
+  color: #e4e4ff;
+  background-color: blue;
 }
 
 .back-enter-active,
@@ -177,7 +192,6 @@ h3 {
   justify-content: space-between;
   align-items: center;
   height: 30px;
-  transition: all 0.5s ease;
 }
 
 .list-animate-item .text {
@@ -192,12 +206,6 @@ h3 {
 
 .list-animate-item:first-child {
   border-top: none;
-}
-
-.list-animate-enter,
-.list-animate-leave-to {
-  opacity: 0;
-  transform: translate(30px, 0px);
 }
 
 .logo {
@@ -536,7 +544,7 @@ path.tail:hover {
   display: flex;
   justify-content: space-around;
   flex-wrap: nowrap;
-  width: 400%;
+  width: 300%;
   transition: transform 0.4s ease;
   height: 100%;
 }
@@ -546,15 +554,11 @@ path.tail:hover {
 }
 
 .info-container.two {
-  transform: translate(-25%, 0px);
+  transform: translate(-33.3333%, 0px);
 }
 
 .info-container.three {
-  transform: translate(-50%, 0px);
-}
-
-.info-container.four {
-  transform: translate(-75%, 0px);
+  transform: translate(-66.6666%, 0px);
 }
 
 .row-level-other {
@@ -594,7 +598,7 @@ path.tail:hover {
 }
 
 .info-item {
-  width: 25%;
+  width: 33.3333%;
   flex: 1;
   height: 100%;
   overflow-y: auto;
@@ -612,7 +616,7 @@ path.tail.selected {
   right: 20px;
 }
 
-.popup .m-button {
+.popup .popup-buttons-container {
   position: absolute;
   left: 20px;
   right: 20px;
@@ -820,8 +824,13 @@ path.tail.selected {
   }
 
   .toggle-b {
-    background-color: #5a0000;
+    background-color: #00005a;
     color: #ffffff;
+  }
+
+  .pin-matrix {
+    color: #ffffff;
+    background-color: #5a5a00;
   }
 
   .delete-matrix {

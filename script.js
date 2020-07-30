@@ -122,7 +122,7 @@ new Vue({
     date: "2020-06-12",
     saves: localStorage.saves ? JSON.parse(localStorage.saves) : [],
     savesListDisplay: false,
-    deleteMode: false,
+    editMode: false,
     mainMenuHidden: false,
     showResults: false,
     currentMatrix: undefined,
@@ -141,7 +141,7 @@ new Vue({
   },
   methods: {
     loadMatrix: function (newMatrix) {
-      if (!this.deleteMode) {
+      if (!this.editMode) {
         this.date = newMatrix.date;
         this.name = newMatrix.name;
         this.engageMatrix(this.name, this.date);
@@ -149,16 +149,36 @@ new Vue({
     },
     calculate: function () {
       if (this.date != undefined) {
-        if (this.name != '') {
-          this.saves.push({
-            date: this.date,
-            name: this.name
-          });
-          localStorage.saves = JSON.stringify(this.saves);
+        let nameMatch = false;
+        this.saves.forEach((item, index) => {
+          if (this.name === item.name) {
+            let rewriteMatrix = () => {
+              this.engageMatrix(this.name, this.date);
+              this.saves[index].date = this.date;
+              localStorage.saves = JSON.stringify(this.saves);
+            };
+            let justCalculate = () => {
+              this.name = '';
+              this.engageMatrix(this.name, this.date);
+            };
+            this.showPopup("Предупреждение", "Данное имя уже имеется в вашем списке матриц. Хотите перезаписать данные или просто посчитать?", "Перезаписать", rewriteMatrix, "Посчитать", justCalculate);
+            nameMatch = true;
+          }
+        });
+        if (!nameMatch) {
+          if (this.name) {
+            this.saves.push({
+              date: this.date,
+              name: this.name
+            });
+            localStorage.saves = JSON.stringify(this.saves);
+            this.engageMatrix(this.name, this.date);
+          } else {
+            this.engageMatrix("Безымянная", this.date);
+          }
         }
-        this.engageMatrix(this.name || "Безымянная", this.date);
       } else {
-        alert('Введено неверное имя или дата!')
+        alert('Введена неверная дата!');
       }
     },
     engageMatrix: function (name, date) {
@@ -169,6 +189,14 @@ new Vue({
     },
     deleteMatrix: function (index) {
       this.saves.splice(index, 1);
+      localStorage.saves = JSON.stringify(this.saves);
+    },
+    pinMatrix: function (index) {
+      if (!this.saves[index].pinned) {
+        this.saves[index].pinned = true;
+      } else {
+        this.saves[index].pinned = false;
+      }
       localStorage.saves = JSON.stringify(this.saves);
     },
     getAge: function (dateString) {
@@ -505,12 +533,6 @@ new Vue({
               };
             }
           });
-          // this[item].getAllElements().forEach((item2) => {    // смотрим у них каждую двойку и тройку
-          //   const tag = `t${item2[0].arcane}_${item2[1].arcane}${item2[2]?`_${item2[2].arcane}`:''}`;    // совпадают ли их числа энергий с тегами хвостов или программ
-          //   if (mainTailList[tag]) { //mainTailList[tag]
-          //     this.tailsList.push(new MatrixOfLifeTails(item2[0].id, item2[2] ? item2[2].id : item2[1].id, tag)); // если да, то добавляем их в список хвостов
-          //   }
-          // });
         }
       }
       return data;
@@ -531,12 +553,14 @@ new Vue({
       this.selectedEnergy =  energy;
       this.infoShow = false;
     },
-    showPopup: function (header, body, buttonText, buttonFunction) {
+    showPopup: function (header, body, firstButtonText, firstButtonFunction, secondButtonText, secondButtonFunction) {
       this.popupData.header = header;
       this.popupData.body = body;
       this.popupData.show = true;
-      this.popupData.buttonText = buttonText;
-      this.popupData.buttonFunction = buttonFunction;
+      this.popupData.firstButtonText = firstButtonText;
+      this.popupData.firstButtonFunction = firstButtonFunction;
+      this.popupData.secondButtonText = secondButtonText;
+      this.popupData.secondButtonFunction = secondButtonFunction;
     },
     closePopup: function () {
       this.popupData.header = undefined;
@@ -555,7 +579,7 @@ new Vue({
         buttonText = 'Отменить выделение';
         buttonFunction = this.checkOutTailSelection.bind(this);
       }
-      this.showPopup(tail.name, description);
+      this.showPopup(tail.name, description, buttonText, buttonFunction);
     },
     showEnergyInfo: function(enegry) {
       const description = `<span class="position">${enegry.position ? enegry.position.toLowerCase() + '</span><br/>' : '</span>'}<p>${arcanesList[enegry.arcane].description}</p>`;
@@ -569,6 +593,10 @@ new Vue({
     },
     showReference: function() {
       this.showPopup("Справка", `
+        <h3>Матрица</h3>
+        <p>во время ввода данных по матрице при заполнения поля имени данная матрица сохраняется в персональном списке, доступном в меню "Сохранённые матрицы". 
+        В данном меню можно как загружать сохранённые матрицы, так и удалять путём перехода в режим удаления путём нажатия (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-pen"></i>) 
+        и последующего нажатия кнопки (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-trash"></i>) на необходимой матрице</p> 
         <h3>Хвосты</h3>
         <p>Информация по хвостам доступна в меню "Информация" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-ellipsis-v"></i>)
         во вкладке "Хвосты" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-align-left"></i>) (открывается по умолчанию).</p> 
@@ -583,10 +611,6 @@ new Vue({
         <p>Информация по линиям земли, неба, мужского, женского и духовному доступна в меню "Информация" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-ellipsis-v"></i>)
         во вкладке "Прочее" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-info"></i>). Также как и во вкладке "Здоровье" здесь можно нажимать 
         на арканы для подробной информации по ним.</p>
-        <h3>Ввод данных для Пифагорейской нумерологии</h3>
-        <p>Для корректной информации по Пифагорейской нумерологии очень важно полностью написать имя при рождении. 
-        Соответствующая информация доступна в меню "Информация" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-ellipsis-v"></i>) 
-        во вкладке "Пифагор" (<i style="font-size:20px; width: 20px; text-align: center;" class="fas fa-calculator"></i>).</p>
       `);
     }
   }
