@@ -183,6 +183,15 @@ h3 {
 .delete-list-item-leave-to {
   opacity: 0;
 }
+/* 
+.list-animate-enter, .list-animate-leave-to {
+  opacity: 0;
+  transform: scale(1, 0);
+} */
+.list-animate-enter, .list-animate-leave-to {
+  opacity: 0;
+  transform: translate(30px, 0px);
+}
 
 .list-animate-item {
   list-style: none;
@@ -192,6 +201,7 @@ h3 {
   justify-content: space-between;
   align-items: center;
   height: 30px;
+  transition: all 0.4s ease;	
 }
 
 .list-animate-item .text {

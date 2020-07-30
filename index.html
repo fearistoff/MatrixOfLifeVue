@@ -814,28 +814,28 @@
     <transition name="list">
       <div class="saves-list block-design" v-if="savesListDisplay">
         <h2>Список матриц</h2>
-        <ul class="list-animate-container">
-          <li v-if="savesItem.pinned" v-for="(savesItem, index) in saves" :key="savesItem" class="list-animate-item"
+        <transition-group name="list-animate" class="list-animate-container" tag="ul">
+          <li v-if="savesItem.pinned" v-for="(savesItem, index) in saves" :key="savesItem.name" class="list-animate-item"
             @click="loadMatrix(savesItem)">
             <div class="text"><span>{{savesItem.name}} ({{getAge(savesItem.date)}}) <i v-if="savesItem.pinned" style="font-size: 0.75em; color: #808080;" class="fas fa-thumbtack"></i></span><span>{{savesItem.date}}</span></div>
             <transition name="delete-list-item">
-              <div v-if="editMode" >
+              <div v-if="editMode">
                 <span @click="pinMatrix(index)" class="pin-matrix" :class="{pinned: savesItem.pinned}"><i class="fas fa-thumbtack"></i></span>
                 <span @click="deleteMatrix(index)" class="delete-matrix"><i class="fas fa-trash"></i></span>
               </div>
             </transition>
           </li>
-          <li v-if="!savesItem.pinned" v-for="(savesItem, index) in saves" :key="savesItem" class="list-animate-item"
+          <li v-if="!savesItem.pinned" v-for="(savesItem, index) in saves" :key="savesItem.name" class="list-animate-item"
             @click="loadMatrix(savesItem)">
             <div class="text"><span>{{savesItem.name}} ({{getAge(savesItem.date)}}) <i v-if="savesItem.pinned" style="font-size: 0.75em; color: #808080;" class="fas fa-thumbtack"></i></span><span>{{savesItem.date}}</span></div>
             <transition name="delete-list-item">
-              <div v-if="editMode" >
+              <div v-if="editMode">
                 <span @click="pinMatrix(index)" class="pin-matrix" :class="{pinned: savesItem.pinned}"><i class="fas fa-thumbtack"></i></span>
                 <span @click="deleteMatrix(index)" class="delete-matrix"><i class="fas fa-trash"></i></span>
               </div>
             </transition>
           </li>
-        </ul>
+        </transition-group>
         <h3 v-if="saves.length == 0">Список пуст...</h3>
         <div class="toggle-b" :class="{'toggle-true': editMode}" @click="editMode = !editMode"><i
             class="fas fa-pen"></i></div>

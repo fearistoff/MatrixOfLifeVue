@@ -169,7 +169,8 @@ new Vue({
           if (this.name) {
             this.saves.push({
               date: this.date,
-              name: this.name
+              name: this.name,
+              pinned: false
             });
             localStorage.saves = JSON.stringify(this.saves);
             this.engageMatrix(this.name, this.date);
