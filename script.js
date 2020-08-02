@@ -1,220 +1,289 @@
-const mainTailList = {
-  "t6_17_11": {
+const mainTailList = { //список хвостов: три или две энергии, название и описание
+    "t6_17_11": {
       "name": "Нереализованный талант",
       "description": ""
-  },
-  "t11_8_15": {
+    },
+    "t11_8_15": {
       "name": "Хвост агрессии",
       "description": ""
-  },
-  "t21_4_10": {
+    },
+    "t21_4_10": {
       "name": "Унетённая душа",
       "description": ""
-  },
-  "t15_22": {
+    },
+    "t15_22": {
       "name": "Зависимость, невсвобода",
       "description": ""
-  },
-  "t22_7": {
+    },
+    "t22_7": {
       "name": "Не хочет иметь семью",
       "description": ""
-  },
-  "t14_20_6": {
+    },
+    "t14_20_6": {
       "name": "Хвост жертвы",
       "description": ""
-  },
-  "t9_9_18": {
+    },
+    "t9_9_18": {
       "name": "Хвост мага",
       "description": ""
-  },
-  "t15_7": {
+    },
+    "t15_7": {
       "name": "Агрессия",
       "description": "Три энергии внизу матрицы судьбы (на рисунке обведены красной линией) называют «кармическим хвостом». Это кармический багаж, который человек принес из прошлых жизней. При рождении у человека эти энергии всегда в минусе. Трактовка каждой энергии в кармическом хвосте меняется, в зависимости от Энергияов, которые находятся рядом"
-  },
-  "t15_5_8": {
+    },
+    "t15_5_8": {
       "name": "Страсти в семье",
       "description": ""
-  },
-  "t9_3_21": {
+    },
+    "t9_3_21": {
       "name": "Хвост надзирателя",
       "description": ""
-  },
-  "t9_15_6": {
+    },
+    "t9_15_6": {
       "name": "Выбор между любовью и страстью",
       "description": ""
-  },
-  "t21_6_15": {
+    },
+    "t21_6_15": {
       "name": "Программа разгула",
       "description": ""
-  },
-  "t9_4_22": {
+    },
+    "t9_4_22": {
       "name": "Тюремная программа",
       "description": ""
-  },
-  "t9_11_20": {
+    },
+    "t9_11_20": {
       "name": "Вырождение рода",
       "description": ""
-  },
-  "t4_16_12": {
+    },
+    "t4_16_12": {
       "name": "Хвост императора",
       "description": ""
-  },
-  "t3_7_22": {
+    },
+    "t3_7_22": {
       "name": "Хвост заключённого",
       "description": ""
-  },
-  "t6_5_17": {
+    },
+    "t6_5_17": {
       "name": "Хвост гордыни",
       "description": ""
-  },
-  "t7_7_18": {
+    },
+    "t7_7_18": {
       "name": "Страх ставить цели",
       "description": ""
-  }
-  // "tХХ_ХХ_ХХ": {
-  //     "name": "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ",
-  //     "description": ""
-  // },
-  // "tХХ_ХХ_ХХ": {
-  //     "name": "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ",
-  //     "description": ""
-  // },
-  // "tХХ_ХХ_ХХ": {
-  //     "name": "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ",
-  //     "description": ""
-  // },
-  // "tХХ_ХХ_ХХ": {
-  //     "name": "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ",
-  //     "description": ""
-  // },
-  // "tХХ_ХХ_ХХ": {
-  //     "name": "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ",
-  //     "description": ""
-  // }
-}, arcanesList = [null, 
-  {name: 'Энергия мага', description: ''},
-  {name: 'Энергия единства, равенства и гармонии', description: ''}, 
-  {name: 'Энергия плодородия, зачатия', description: ''}, 
-  {name: 'Энергия хозияна', description: ''}, 
-  {name: 'Энергия учителя и ученика', description: ''}, 
-  {name: 'Энергия любви и отношений', description: ''}, 
-  {name: 'Энергия воина, победителя, движения вперёд', description: ''}, 
-  {name: 'Энергия кармической справедливости', description: ''}, 
-  {name: 'Энергия мудреца, отшельника', description: ''}, 
-  {name: 'Энергия фортуны, удачи', description: ''}, 
-  {name: 'Энергия силы и потенциала', description: ''}, 
-  {name: 'Энергия нового видения и служения людям', description: ''}, 
-  {name: 'Энергия жизни и смерти, трансформации', description: ''}, 
-  {name: 'Энергия исскуства и зрелой души', description: ''}, 
-  {name: 'Энергия проявления, искушения и тёмного ангела', description: ''}, 
-  {name: 'Энергия духовного пробуждения', description: ''}, 
-  {name: 'Энергия звезды', description: ''}, 
-  {name: 'Энергия магии, луны и освобождения от страхов', description: ''}, 
-  {name: 'Энергия солнца и процветания', description: ''}, 
-  {name: 'Энергия яснознания и связи с родом', description: ''}, 
-  {name: 'Энергия мира, миротворца', description: ''}, 
-  {name: 'Энергия высшей духовной свободы', description: ''}];
+    }
+    // "tХХ_ХХ_ХХ": {
+    //     "name": "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ",
+    //     "description": ""
+    // },
+    // "tХХ_ХХ_ХХ": {
+    //     "name": "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ",
+    //     "description": ""
+    // },
+    // "tХХ_ХХ_ХХ": {
+    //     "name": "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ",
+    //     "description": ""
+    // },
+    // "tХХ_ХХ_ХХ": {
+    //     "name": "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ",
+    //     "description": ""
+    // },
+    // "tХХ_ХХ_ХХ": {
+    //     "name": "ХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХХ",
+    //     "description": ""
+    // }
+  },
+  arcanesList = [null, // список арканов: название и описание
+    {
+      name: 'Энергия мага',
+      description: ''
+    },
+    {
+      name: 'Энергия единства, равенства и гармонии',
+      description: ''
+    },
+    {
+      name: 'Энергия плодородия, зачатия',
+      description: ''
+    },
+    {
+      name: 'Энергия хозияна',
+      description: ''
+    },
+    {
+      name: 'Энергия учителя и ученика',
+      description: ''
+    },
+    {
+      name: 'Энергия любви и отношений',
+      description: ''
+    },
+    {
+      name: 'Энергия воина, победителя, движения вперёд',
+      description: ''
+    },
+    {
+      name: 'Энергия кармической справедливости',
+      description: ''
+    },
+    {
+      name: 'Энергия мудреца, отшельника',
+      description: ''
+    },
+    {
+      name: 'Энергия фортуны, удачи',
+      description: ''
+    },
+    {
+      name: 'Энергия силы и потенциала',
+      description: ''
+    },
+    {
+      name: 'Энергия нового видения и служения людям',
+      description: ''
+    },
+    {
+      name: 'Энергия жизни и смерти, трансформации',
+      description: ''
+    },
+    {
+      name: 'Энергия исскуства и зрелой души',
+      description: ''
+    },
+    {
+      name: 'Энергия проявления, искушения и тёмного ангела',
+      description: ''
+    },
+    {
+      name: 'Энергия духовного пробуждения',
+      description: ''
+    },
+    {
+      name: 'Энергия звезды',
+      description: ''
+    },
+    {
+      name: 'Энергия магии, луны и освобождения от страхов',
+      description: ''
+    },
+    {
+      name: 'Энергия солнца и процветания',
+      description: ''
+    },
+    {
+      name: 'Энергия яснознания и связи с родом',
+      description: ''
+    },
+    {
+      name: 'Энергия мира, миротворца',
+      description: ''
+    },
+    {
+      name: 'Энергия высшей духовной свободы',
+      description: ''
+    }
+  ];
 
 new Vue({
   el: '#app',
   data: {
-    name: '',
-    date: "2020-06-12",
-    saves: localStorage.saves ? JSON.parse(localStorage.saves) : [],
-    savesListDisplay: false,
-    editMode: false,
-    mainMenuHidden: false,
-    showResults: false,
-    currentMatrix: undefined,
-    popupData: {
-      header: undefined,
-      body: undefined,
-      show: false,
-      buttonText: undefined,
-      buttonFunction: undefined
+    name: '', //имя матрицы, вводимое пользователем
+    date: "2020-06-12", //дата рождения для расчёта матрицы
+    saves: localStorage.saves ? JSON.parse(localStorage.saves) : [], //сохранённые ранее пользователем матрицы
+    savesListDisplay: false, //режим отображение списка сохранённых матриц
+    editMode: false, //режим режактирования списка матриц
+    mainMenuHidden: false, //скрытие основного меню
+    showResults: false, //отображение матрицы
+    currentMatrix: undefined, //данные текущей матрицы
+    popupData: { //данные для всплывающего окна
+      header: undefined, //заголовок
+      body: undefined, //основной текст
+      show: false, //режим отображения матрицы
+      firstButtonText: undefined, //подпись к первой кнопке
+      firstButtonFunction: undefined, //функция для первой кнопки
+      secondButtonText: undefined, //подпись ко второй кнопке
+      secondButtonFunction: undefined //функция для второй кнопки
     },
-    tailsList: [],
-    infoShow: false,
-    selectedTail: {name: undefined, description: undefined, energy: undefined, tag: undefined},
-    tabId: 0,
-    energiesList: []
+    tailsList: [], //список хвостов
+    infoShow: false, //режим просмотра ифнормации 
+    selectedTail: { //подсвеченный хвост
+      name: undefined, //название
+      description: undefined, //описание
+      energy: undefined, //энергия
+      tag: undefined //тег 
+    },
+    tabId: 0, //id вкладки, отображаемой в данный момент в окне информации
+    energiesList: [] //список энергий
   },
   methods: {
-    loadMatrix: function (newMatrix) {
+    loadMatrix: function (newMatrix) { //загрузка матрицы
       if (!this.editMode) {
         this.date = newMatrix.date;
         this.name = newMatrix.name;
         this.engageMatrix(this.name, this.date);
       }
     },
-    calculate: function () {
-      if (this.date != undefined) {
-        let nameMatch = false;
-        this.saves.forEach((item, index) => {
-          if (this.name === item.name) {
-            let rewriteMatrix = () => {
-              this.engageMatrix(this.name, this.date);
-              this.saves[index].date = this.date;
-              localStorage.saves = JSON.stringify(this.saves);
-            };
-            let justCalculate = () => {
-              this.name = '';
-              this.engageMatrix(this.name, this.date);
-            };
-            this.showPopup("Предупреждение", "Данное имя уже имеется в вашем списке матриц. Хотите перезаписать данные или просто посчитать?", "Перезаписать", rewriteMatrix, "Посчитать", justCalculate);
-            nameMatch = true;
-          }
-        });
-        if (!nameMatch) {
-          if (this.name) {
-            this.saves.push({
+    calculate: function () { //приём значений для матрицы из основного меню
+      if (this.date != undefined) { //если дата верная
+        if (this.name) { //и если введено bvz 
+          let nameMatch = false; //показатель того, что имя совпало с уже имеющимся в списке сохранённых матриц
+          this.saves.forEach((item, index) => {
+            if (this.name === item.name) { //проверяем совпадае ли введённое имя с именем в списке
+              let rewriteMatrix = () => { //то либо у сохранённой матрицы меняем дату
+                this.engageMatrix(this.name, this.date);
+                this.saves[index].date = this.date;
+                localStorage.saves = JSON.stringify(this.saves); //сохраняем в локальном хранилище
+              };
+              let justCalculate = () => { //либо просто считаем ничего не запомниая и сбрасывая имя
+                this.name = '';
+                this.engageMatrix(this.name, this.date);
+              };
+              this.showPopup("Предупреждение", "Данное имя уже имеется в вашем списке матриц. Хотите перезаписать данные или просто посчитать?", "Перезаписать", rewriteMatrix, "Посчитать", justCalculate);
+              nameMatch = true; //знак того, что имена совпали 
+            }
+          });
+          if (!nameMatch) { //если нет совпадений  
+            this.saves.push({ //добавляем в список сохранённых матриц
               date: this.date,
-              name: this.name,
-              pinned: false
+              name: this.name
             });
-            localStorage.saves = JSON.stringify(this.saves);
+            localStorage.saves = JSON.stringify(this.saves); //сохраняем в локальном хранилище
             this.engageMatrix(this.name, this.date);
-          } else {
-            this.engageMatrix("Безымянная", this.date);
           }
+        } else { // если имени нет, то просто считаем матрицу без сохранений
+          this.engageMatrix("Безымянная", this.date);
         }
       } else {
         alert('Введена неверная дата!');
       }
     },
-    engageMatrix: function (name, date) {
+    engageMatrix: function (name, date) { //запустить подсчёт значений матрицы и подготовить интерфейс для отображения
       this.currentMatrix = this.createMatrix(date, name)
       this.showResults = true;
       this.mainMenuHidden = true;
       this.savesListDisplay = false;
     },
-    deleteMatrix: function (index) {
+    deleteMatrix: function (index) { //удалить пункт в списке матриц
       this.saves.splice(index, 1);
       localStorage.saves = JSON.stringify(this.saves);
     },
-    pinMatrix: function (index) {
-      if (!this.saves[index].pinned) {
-        this.saves[index].pinned = true;
-      } else {
-        this.saves[index].pinned = false;
-      }
-      localStorage.saves = JSON.stringify(this.saves);
-    },
-    getAge: function (dateString) {
+    getAge: function (dateString) { //получить возраст из даты рождения и сегодняшней даты
       let date = new Date(dateString);
       return Math.floor(((new Date()).getTime() - date.getTime()) / (1000 * 3600 * 24 * 365))
     },
-    splitAndAdd: function (inNumber) {
-      const countOfEnegries = 22;
+    splitAndAdd: function (inNumber) { //метод обработки чисел больше 22-х
       let newNumber;
-      if (inNumber <= countOfEnegries) {
-          return inNumber;
-      } else if (inNumber > 999) newNumber = Math.floor(inNumber/1000) + Math.floor((inNumber/100)%10) + Math.floor((inNumber/10)%10) + Math.floor(inNumber%10);
-      else if (inNumber > 99) newNumber = Math.floor((inNumber/100)%10) + Math.floor((inNumber/10)%10) + Math.floor(inNumber%10);
-      else newNumber = Math.floor((inNumber/10)%10) + Math.floor(inNumber%10);
+      if (inNumber <= 22) {
+        return inNumber;
+      } else if (inNumber > 999) {
+        newNumber = Math.floor(inNumber / 1000) + Math.floor((inNumber / 100) % 10) + Math.floor((inNumber / 10) % 10) + Math.floor(inNumber % 10);
+      } else if (inNumber > 99) {
+        newNumber = Math.floor((inNumber / 100) % 10) + Math.floor((inNumber / 10) % 10) + Math.floor(inNumber % 10);
+      } else {
+        newNumber = Math.floor((inNumber / 10) % 10) + Math.floor(inNumber % 10);
+      }
       return this.splitAndAdd(newNumber);
     },
-    createMatrix: function (date, name) {
+    createMatrix: function (date, name) { //подсчёт матрицы
       // последовательный подсчёт энергий 
       // личный (диагональный) квадрат
       let data = {
@@ -297,7 +366,7 @@ new Vue({
       data.u63 = this.matrixElement(data.u62.arcane + data.u00.arcane, 'u63');
 
       data.c00 = this.matrixElement(data.u00.arcane + data.u16.arcane + data.u32.arcane + data.u48.arcane, 'c00');
-  
+
       data.c02 = this.matrixElement(data.c00.arcane + data.u00.arcane, 'c02');
       data.c01 = this.matrixElement(data.c02.arcane + data.c00.arcane, 'c01');
       data.c03 = this.matrixElement(data.u00.arcane + data.c02.arcane, 'c03');
@@ -314,26 +383,19 @@ new Vue({
 
       data.c41 = this.matrixElement(data.c00.arcane + data.u32.arcane, 'c41');
       data.c42 = this.matrixElement(data.c41.arcane + data.u32.arcane, 'c42');
-      
+
       data.c52 = this.matrixElement(data.c00.arcane + data.u40.arcane, 'c52');
       data.c53 = this.matrixElement(data.c52.arcane + data.u40.arcane, 'c53');
 
       data.c61 = this.matrixElement(data.c00.arcane + data.u48.arcane, 'c61');
       data.c62 = this.matrixElement(data.u48.arcane + data.c61.arcane, 'c62');
-      
+
       data.c71 = this.matrixElement(data.c00.arcane + data.u56.arcane, 'c71');
       data.c72 = this.matrixElement(data.u56.arcane + data.c71.arcane, 'c72');
 
       data.c51 = this.matrixElement(data.c41.arcane + data.c61.arcane, 'c51');
       data.s01 = this.matrixElement(data.c41.arcane + data.c51.arcane, 's01');
       data.s02 = this.matrixElement(data.c61.arcane + data.c51.arcane, 's02');
-      // let list = [];
-      // for(key in data) {
-      //   if (key !== 'date' && key !== 'name') {
-      //     list.push(data[key]);
-      //   }
-      // };
-      // data.energiesList = list;
       // под таблицей
       // небо - земля 
       data.b01 = this.matrixElement(data.u16.arcane + data.u48.arcane, 'b01', false);
@@ -378,159 +440,662 @@ new Vue({
       data.t81 = this.matrixElement(data.t11.arcane + data.t21.arcane + data.t31.arcane + data.t41.arcane + data.t51.arcane + data.t61.arcane + data.t71.arcane, 't81');
       data.t82 = this.matrixElement(data.t12.arcane + data.t22.arcane + data.t32.arcane + data.t42.arcane + data.t52.arcane + data.t62.arcane + data.t72.arcane, 't82');
       data.t83 = this.matrixElement(data.t81.arcane + data.t82.arcane, 't83');
-      
-      data.u00.neighborPairList = [[data.u01, data.u02], [data.u01], [data.c03, data.c02], [data.c03], [data.u63, data.u62], [data.u63]];
 
-      data.u00.neighborPairList = [[data.u01, data.u02], [data.u01], [data.c03, data.c02], [data.c03], [data.u63, data.u62], [data.u63]];
-      data.u08.neighborPairList = [[data.u07, data.u06], [data.u07], [data.c12, data.c11], [data.c12], [data.u09, data.u10], [data.u09]];
-      data.u16.neighborPairList = [[data.u15, data.u14], [data.u15], [data.c23, data.c22], [data.c23], [data.u17, data.u18], [data.u17]];
-      data.u24.neighborPairList = [[data.u23, data.u22], [data.u23], [data.c32, data.c31], [data.c32], [data.u25, data.u26], [data.u25]];
-      data.u32.neighborPairList = [[data.u31, data.u30], [data.u31], [data.c42, data.c41], [data.c42], [data.u33, data.u34], [data.u33]];
-      data.u40.neighborPairList = [[data.u39, data.u38], [data.u39], [data.c53, data.c52], [data.c53], [data.u41, data.u42], [data.u41]];
-      data.u48.neighborPairList = [[data.u47, data.u46], [data.u47], [data.c62, data.c61], [data.c62], [data.u49, data.u50], [data.u49]];
-      data.u56.neighborPairList = [[data.u55, data.u54], [data.u55], [data.c72, data.c71], [data.c72], [data.u57, data.u58], [data.u57]];
+      data.u00.neighborPairList = [
+        [data.u01, data.u02],
+        [data.u01],
+        [data.c03, data.c02],
+        [data.c03],
+        [data.u63, data.u62],
+        [data.u63]
+      ];
 
-      data.c00.neighborPairList = [[data.c01, data.c02], [data.c01], [data.c11, data.c12], [data.c11], [data.c21, data.c22], [data.c21], [data.c31, data.c32], [data.c31], [data.c41, data.c42], [data.c41], [data.c51, data.c52], [data.c51], [data.c61, data.c62], [data.c61], [data.c71, data.c72], [data.c71]];
+      data.u00.neighborPairList = [
+        [data.u01, data.u02],
+        [data.u01],
+        [data.c03, data.c02],
+        [data.c03],
+        [data.u63, data.u62],
+        [data.u63]
+      ];
+      data.u08.neighborPairList = [
+        [data.u07, data.u06],
+        [data.u07],
+        [data.c12, data.c11],
+        [data.c12],
+        [data.u09, data.u10],
+        [data.u09]
+      ];
+      data.u16.neighborPairList = [
+        [data.u15, data.u14],
+        [data.u15],
+        [data.c23, data.c22],
+        [data.c23],
+        [data.u17, data.u18],
+        [data.u17]
+      ];
+      data.u24.neighborPairList = [
+        [data.u23, data.u22],
+        [data.u23],
+        [data.c32, data.c31],
+        [data.c32],
+        [data.u25, data.u26],
+        [data.u25]
+      ];
+      data.u32.neighborPairList = [
+        [data.u31, data.u30],
+        [data.u31],
+        [data.c42, data.c41],
+        [data.c42],
+        [data.u33, data.u34],
+        [data.u33]
+      ];
+      data.u40.neighborPairList = [
+        [data.u39, data.u38],
+        [data.u39],
+        [data.c53, data.c52],
+        [data.c53],
+        [data.u41, data.u42],
+        [data.u41]
+      ];
+      data.u48.neighborPairList = [
+        [data.u47, data.u46],
+        [data.u47],
+        [data.c62, data.c61],
+        [data.c62],
+        [data.u49, data.u50],
+        [data.u49]
+      ];
+      data.u56.neighborPairList = [
+        [data.u55, data.u54],
+        [data.u55],
+        [data.c72, data.c71],
+        [data.c72],
+        [data.u57, data.u58],
+        [data.u57]
+      ];
 
-      data.c01.neighborPairList = [[data.c02, data.c03], [data.c02], [data.c00, data.c41], [data.c00]];
-      data.c02.neighborPairList = [[data.c03, data.u00], [data.c03], [data.c01, data.c00], [data.c01]];
-      data.c03.neighborPairList = [[data.u00], [data.c02, data.c01], [data.c02]];
+      data.c00.neighborPairList = [
+        [data.c01, data.c02],
+        [data.c01],
+        [data.c11, data.c12],
+        [data.c11],
+        [data.c21, data.c22],
+        [data.c21],
+        [data.c31, data.c32],
+        [data.c31],
+        [data.c41, data.c42],
+        [data.c41],
+        [data.c51, data.c52],
+        [data.c51],
+        [data.c61, data.c62],
+        [data.c61],
+        [data.c71, data.c72],
+        [data.c71]
+      ];
 
-      data.c11.neighborPairList = [[data.c12, data.u08], [data.c12], [data.c00, data.c51], [data.c00]];
-      data.c12.neighborPairList = [[data.u08], [data.c11, data.u08], [data.c11]];
+      data.c01.neighborPairList = [
+        [data.c02, data.c03],
+        [data.c02],
+        [data.c00, data.c41],
+        [data.c00]
+      ];
+      data.c02.neighborPairList = [
+        [data.c03, data.u00],
+        [data.c03],
+        [data.c01, data.c00],
+        [data.c01]
+      ];
+      data.c03.neighborPairList = [
+        [data.u00],
+        [data.c02, data.c01],
+        [data.c02]
+      ];
 
-      data.c21.neighborPairList = [[data.c22, data.c23], [data.c22], [data.c00, data.c61], [data.c00]];
-      data.c22.neighborPairList = [[data.c23, data.u16], [data.c23], [data.c21, data.c00], [data.c21]];
-      data.c23.neighborPairList = [[data.u16], [data.c22, data.c21], [data.c22]];
+      data.c11.neighborPairList = [
+        [data.c12, data.u08],
+        [data.c12],
+        [data.c00, data.c51],
+        [data.c00]
+      ];
+      data.c12.neighborPairList = [
+        [data.u08],
+        [data.c11, data.u08],
+        [data.c11]
+      ];
 
-      data.c31.neighborPairList = [[data.c32, data.u24], [data.c32], [data.c00, data.c71], [data.c00]];
-      data.c32.neighborPairList = [[data.u24], [data.c31, data.c00], [data.c31]];
+      data.c21.neighborPairList = [
+        [data.c22, data.c23],
+        [data.c22],
+        [data.c00, data.c61],
+        [data.c00]
+      ];
+      data.c22.neighborPairList = [
+        [data.c23, data.u16],
+        [data.c23],
+        [data.c21, data.c00],
+        [data.c21]
+      ];
+      data.c23.neighborPairList = [
+        [data.u16],
+        [data.c22, data.c21],
+        [data.c22]
+      ];
 
-      data.c41.neighborPairList = [[data.c42, data.u32], [data.c42], [data.c00, data.c01], [data.c00], [data.s01, data.c51], [data.s01]];
-      data.c42.neighborPairList = [[data.u32], [data.c41, data.c00], [data.c41]];
-      
-      data.c51.neighborPairList = [[data.s02, data.c61], [data.s02], [data.s01, data.c41], [data.s01], [data.c52, data.c53], [data.c52], [data.c00, data.c11], [data.c00]];
-      data.c52.neighborPairList = [[data.c53, data.u40], [data.c53], [data.c51, data.c00], [data.c51]];
-      data.c53.neighborPairList = [[data.u40], [data.c52, data.c51], [data.c53]];
+      data.c31.neighborPairList = [
+        [data.c32, data.u24],
+        [data.c32],
+        [data.c00, data.c71],
+        [data.c00]
+      ];
+      data.c32.neighborPairList = [
+        [data.u24],
+        [data.c31, data.c00],
+        [data.c31]
+      ];
 
-      data.c61.neighborPairList = [[data.c62, data.u48], [data.c62], [data.c00, data.c21], [data.c00], [data.s02, data.c51], [data.s02]];
-      data.c62.neighborPairList = [[data.u48], [data.c61, data.c00], [data.c61]];
-      
-      data.c71.neighborPairList = [[data.c72, data.u56], [data.c72], [data.c00, data.c31], [data.c00]];
-      data.c72.neighborPairList = [[data.u56], [data.c71, data.c00], [data.c71]];
+      data.c41.neighborPairList = [
+        [data.c42, data.u32],
+        [data.c42],
+        [data.c00, data.c01],
+        [data.c00],
+        [data.s01, data.c51],
+        [data.s01]
+      ];
+      data.c42.neighborPairList = [
+        [data.u32],
+        [data.c41, data.c00],
+        [data.c41]
+      ];
 
-      data.s01.neighborPairList = [[data.c51, data.s02], [data.c51], [data.c41]];
-      data.s02.neighborPairList = [[data.c51, data.s01], [data.c51], [data.c61]];
+      data.c51.neighborPairList = [
+        [data.s02, data.c61],
+        [data.s02],
+        [data.s01, data.c41],
+        [data.s01],
+        [data.c52, data.c53],
+        [data.c52],
+        [data.c00, data.c11],
+        [data.c00]
+      ];
+      data.c52.neighborPairList = [
+        [data.c53, data.u40],
+        [data.c53],
+        [data.c51, data.c00],
+        [data.c51]
+      ];
+      data.c53.neighborPairList = [
+        [data.u40],
+        [data.c52, data.c51],
+        [data.c53]
+      ];
 
-      data.u01.neighborPairList = [[data.u00], [data.u02, data.u03], [data.u02]];
-      data.u02.neighborPairList = [[data.u01, data.u00], [data.u01], [data.u03, data.u04], [data.u03]];
-      data.u03.neighborPairList = [[data.u02, data.u01], [data.u02], [data.u04]];
-      data.u04.neighborPairList = [[data.u03, data.u02], [data.u03], [data.u05, data.u06], [data.u05]];
-      data.u05.neighborPairList = [[data.u04], [data.u06, data.u07], [data.u06]];
-      data.u06.neighborPairList = [[data.u05, data.u04], [data.u05], [data.u07, data.u08], [data.u07]];
-      data.u07.neighborPairList = [[data.u06, data.u05], [data.u06], [data.u08]];
-      
-      data.u09.neighborPairList = [[data.u08], [data.u09, data.u10], [data.u09]];
-      data.u10.neighborPairList = [[data.u09, data.u08], [data.u09], [data.u11, data.u12], [data.u11]];
-      data.u11.neighborPairList = [[data.u10, data.u09], [data.u10], [data.u12]];
-      data.u12.neighborPairList = [[data.u11, data.u10], [data.u11], [data.u13, data.u14], [data.u13]];
-      data.u13.neighborPairList = [[data.u12], [data.u14, data.u15], [data.u14]];
-      data.u14.neighborPairList = [[data.u13, data.u12], [data.u13], [data.u15, data.u16], [data.u15]];
-      data.u15.neighborPairList = [[data.u14, data.u13], [data.u14], [data.u16]];
+      data.c61.neighborPairList = [
+        [data.c62, data.u48],
+        [data.c62],
+        [data.c00, data.c21],
+        [data.c00],
+        [data.s02, data.c51],
+        [data.s02]
+      ];
+      data.c62.neighborPairList = [
+        [data.u48],
+        [data.c61, data.c00],
+        [data.c61]
+      ];
 
-      data.u17.neighborPairList = [[data.u16], [data.u18, data.u19], [data.u18]];
-      data.u18.neighborPairList = [[data.u17, data.u16], [data.u17], [data.u19, data.u20], [data.u19]];
-      data.u19.neighborPairList = [[data.u18, data.u17], [data.u18], [data.u20]];
-      data.u20.neighborPairList = [[data.u19, data.u18], [data.u19], [data.u21, data.u22], [data.u21]];
-      data.u21.neighborPairList = [[data.u20], [data.u22, data.u23], [data.u22]];
-      data.u22.neighborPairList = [[data.u21, data.u20], [data.u21], [data.u23, data.u24], [data.u23]];
-      data.u23.neighborPairList = [[data.u22, data.u21], [data.u22], [data.u24]];
-      
-      data.u25.neighborPairList = [[data.u24], [data.u26, data.u27], [data.u26]];
-      data.u26.neighborPairList = [[data.u25, data.u24], [data.u25], [data.u27, data.u28], [data.u27]];
-      data.u27.neighborPairList = [[data.u26, data.u25], [data.u26], [data.u28]];
-      data.u28.neighborPairList = [[data.u27, data.u26], [data.u27], [data.u29, data.u30], [data.u29]];
-      data.u29.neighborPairList = [[data.u28], [data.u30, data.u31], [data.u30]];
-      data.u30.neighborPairList = [[data.u29, data.u28], [data.u29], [data.u31, data.u32], [data.u31]];
-      data.u31.neighborPairList = [[data.u30, data.u29], [data.u30], [data.u32]];
-      
-      data.u33.neighborPairList = [[data.u32], [data.u34, data.u35], [data.u34]];
-      data.u34.neighborPairList = [[data.u33, data.u32], [data.u33], [data.u35, data.u36], [data.u35]];
-      data.u35.neighborPairList = [[data.u34, data.u33], [data.u34], [data.u36]];
-      data.u36.neighborPairList = [[data.u35, data.u34], [data.u35], [data.u37, data.u38], [data.u37]];
-      data.u37.neighborPairList = [[data.u36], [data.u38, data.u39], [data.u38]];
-      data.u38.neighborPairList = [[data.u37, data.u36], [data.u37], [data.u39, data.u40], [data.u39]];
-      data.u39.neighborPairList = [[data.u38, data.u37], [data.u38], [data.u40]];
-      
-      data.u41.neighborPairList = [[data.u40], [data.u42, data.u43], [data.u42]];
-      data.u42.neighborPairList = [[data.u41, data.u40], [data.u41], [data.u43, data.u44], [data.u43]];
-      data.u43.neighborPairList = [[data.u42, data.u41], [data.u42], [data.u44]];
-      data.u44.neighborPairList = [[data.u43, data.u42], [data.u43], [data.u45, data.u46], [data.u45]];
-      data.u45.neighborPairList = [[data.u44], [data.u46, data.u47], [data.u46]];
-      data.u46.neighborPairList = [[data.u45, data.u44], [data.u45], [data.u47, data.u48], [data.u47]];
-      data.u47.neighborPairList = [[data.u46, data.u45], [data.u46], [data.u48]];
-      
-      data.u49.neighborPairList = [[data.u48], [data.u50, data.u51], [data.u50]];
-      data.u50.neighborPairList = [[data.u49, data.u48], [data.u49], [data.u51, data.u52], [data.u51]];
-      data.u51.neighborPairList = [[data.u50, data.u49], [data.u50], [data.u52]];
-      data.u52.neighborPairList = [[data.u51, data.u50], [data.u51], [data.u53, data.u54], [data.u53]];
-      data.u53.neighborPairList = [[data.u52], [data.u54, data.u55], [data.u54]];
-      data.u54.neighborPairList = [[data.u53, data.u52], [data.u53], [data.u55, data.u56], [data.u55]];
-      data.u55.neighborPairList = [[data.u54, data.u53], [data.u54], [data.u56]];
-      
-      data.u57.neighborPairList = [[data.u56], [data.u58, data.u59], [data.u58]];
-      data.u58.neighborPairList = [[data.u57, data.u56], [data.u57], [data.u59, data.u60], [data.u59]];
-      data.u59.neighborPairList = [[data.u58, data.u57], [data.u58], [data.u60]];
-      data.u60.neighborPairList = [[data.u59, data.u58], [data.u59], [data.u61, data.u62], [data.u61]];
-      data.u61.neighborPairList = [[data.u60], [data.u62, data.u63], [data.u62]];
-      data.u62.neighborPairList = [[data.u61, data.u60], [data.u61], [data.u63, data.u00], [data.u63]];
-      data.u63.neighborPairList = [[data.u62, data.u61], [data.u62], [data.u00]];
+      data.c71.neighborPairList = [
+        [data.c72, data.u56],
+        [data.c72],
+        [data.c00, data.c31],
+        [data.c00]
+      ];
+      data.c72.neighborPairList = [
+        [data.u56],
+        [data.c71, data.c00],
+        [data.c71]
+      ];
 
-      data.t11.neighborPairList = [[data.t12, data.t13], [data.t12]];
-      data.t12.neighborPairList = [[data.t11], [data.t13]];
-      data.t13.neighborPairList = [[data.t12, data.t11], [data.t12]];
-      
-      data.t21.neighborPairList = [[data.t22, data.t23], [data.t22]];
-      data.t22.neighborPairList = [[data.t21], [data.t23]];
-      data.t23.neighborPairList = [[data.t22, data.t21], [data.t22]];
-      
-      data.t31.neighborPairList = [[data.t32, data.t33], [data.t32]];
-      data.t32.neighborPairList = [[data.t31], [data.t33]];
-      data.t33.neighborPairList = [[data.t32, data.t31], [data.t32]];
-      
-      data.t41.neighborPairList = [[data.t42, data.t43], [data.t42]];
-      data.t42.neighborPairList = [[data.t41], [data.t43]];
-      data.t43.neighborPairList = [[data.t42, data.t41], [data.t42]];
-      
-      data.t51.neighborPairList = [[data.t52, data.t53], [data.t52]];
-      data.t52.neighborPairList = [[data.t51], [data.t53]];
-      data.t53.neighborPairList = [[data.t52, data.t51], [data.t52]];
-      
-      data.t61.neighborPairList = [[data.t62, data.t63], [data.t62]];
-      data.t62.neighborPairList = [[data.t61], [data.t63]];
-      data.t63.neighborPairList = [[data.t62, data.t61], [data.t62]];
-      
-      data.t71.neighborPairList = [[data.t72, data.t73], [data.t72]];
-      data.t72.neighborPairList = [[data.t71], [data.t73]];
-      data.t73.neighborPairList = [[data.t72, data.t71], [data.t72]];
-      
-      data.t81.neighborPairList = [[data.t82, data.t83], [data.t82]];
-      data.t82.neighborPairList = [[data.t81], [data.t83]];
-      data.t83.neighborPairList = [[data.t82, data.t81], [data.t82]];
+      data.s01.neighborPairList = [
+        [data.c51, data.s02],
+        [data.c51],
+        [data.c41]
+      ];
+      data.s02.neighborPairList = [
+        [data.c51, data.s01],
+        [data.c51],
+        [data.c61]
+      ];
+
+      data.u01.neighborPairList = [
+        [data.u00],
+        [data.u02, data.u03],
+        [data.u02]
+      ];
+      data.u02.neighborPairList = [
+        [data.u01, data.u00],
+        [data.u01],
+        [data.u03, data.u04],
+        [data.u03]
+      ];
+      data.u03.neighborPairList = [
+        [data.u02, data.u01],
+        [data.u02],
+        [data.u04]
+      ];
+      data.u04.neighborPairList = [
+        [data.u03, data.u02],
+        [data.u03],
+        [data.u05, data.u06],
+        [data.u05]
+      ];
+      data.u05.neighborPairList = [
+        [data.u04],
+        [data.u06, data.u07],
+        [data.u06]
+      ];
+      data.u06.neighborPairList = [
+        [data.u05, data.u04],
+        [data.u05],
+        [data.u07, data.u08],
+        [data.u07]
+      ];
+      data.u07.neighborPairList = [
+        [data.u06, data.u05],
+        [data.u06],
+        [data.u08]
+      ];
+
+      data.u09.neighborPairList = [
+        [data.u08],
+        [data.u09, data.u10],
+        [data.u09]
+      ];
+      data.u10.neighborPairList = [
+        [data.u09, data.u08],
+        [data.u09],
+        [data.u11, data.u12],
+        [data.u11]
+      ];
+      data.u11.neighborPairList = [
+        [data.u10, data.u09],
+        [data.u10],
+        [data.u12]
+      ];
+      data.u12.neighborPairList = [
+        [data.u11, data.u10],
+        [data.u11],
+        [data.u13, data.u14],
+        [data.u13]
+      ];
+      data.u13.neighborPairList = [
+        [data.u12],
+        [data.u14, data.u15],
+        [data.u14]
+      ];
+      data.u14.neighborPairList = [
+        [data.u13, data.u12],
+        [data.u13],
+        [data.u15, data.u16],
+        [data.u15]
+      ];
+      data.u15.neighborPairList = [
+        [data.u14, data.u13],
+        [data.u14],
+        [data.u16]
+      ];
+
+      data.u17.neighborPairList = [
+        [data.u16],
+        [data.u18, data.u19],
+        [data.u18]
+      ];
+      data.u18.neighborPairList = [
+        [data.u17, data.u16],
+        [data.u17],
+        [data.u19, data.u20],
+        [data.u19]
+      ];
+      data.u19.neighborPairList = [
+        [data.u18, data.u17],
+        [data.u18],
+        [data.u20]
+      ];
+      data.u20.neighborPairList = [
+        [data.u19, data.u18],
+        [data.u19],
+        [data.u21, data.u22],
+        [data.u21]
+      ];
+      data.u21.neighborPairList = [
+        [data.u20],
+        [data.u22, data.u23],
+        [data.u22]
+      ];
+      data.u22.neighborPairList = [
+        [data.u21, data.u20],
+        [data.u21],
+        [data.u23, data.u24],
+        [data.u23]
+      ];
+      data.u23.neighborPairList = [
+        [data.u22, data.u21],
+        [data.u22],
+        [data.u24]
+      ];
+
+      data.u25.neighborPairList = [
+        [data.u24],
+        [data.u26, data.u27],
+        [data.u26]
+      ];
+      data.u26.neighborPairList = [
+        [data.u25, data.u24],
+        [data.u25],
+        [data.u27, data.u28],
+        [data.u27]
+      ];
+      data.u27.neighborPairList = [
+        [data.u26, data.u25],
+        [data.u26],
+        [data.u28]
+      ];
+      data.u28.neighborPairList = [
+        [data.u27, data.u26],
+        [data.u27],
+        [data.u29, data.u30],
+        [data.u29]
+      ];
+      data.u29.neighborPairList = [
+        [data.u28],
+        [data.u30, data.u31],
+        [data.u30]
+      ];
+      data.u30.neighborPairList = [
+        [data.u29, data.u28],
+        [data.u29],
+        [data.u31, data.u32],
+        [data.u31]
+      ];
+      data.u31.neighborPairList = [
+        [data.u30, data.u29],
+        [data.u30],
+        [data.u32]
+      ];
+
+      data.u33.neighborPairList = [
+        [data.u32],
+        [data.u34, data.u35],
+        [data.u34]
+      ];
+      data.u34.neighborPairList = [
+        [data.u33, data.u32],
+        [data.u33],
+        [data.u35, data.u36],
+        [data.u35]
+      ];
+      data.u35.neighborPairList = [
+        [data.u34, data.u33],
+        [data.u34],
+        [data.u36]
+      ];
+      data.u36.neighborPairList = [
+        [data.u35, data.u34],
+        [data.u35],
+        [data.u37, data.u38],
+        [data.u37]
+      ];
+      data.u37.neighborPairList = [
+        [data.u36],
+        [data.u38, data.u39],
+        [data.u38]
+      ];
+      data.u38.neighborPairList = [
+        [data.u37, data.u36],
+        [data.u37],
+        [data.u39, data.u40],
+        [data.u39]
+      ];
+      data.u39.neighborPairList = [
+        [data.u38, data.u37],
+        [data.u38],
+        [data.u40]
+      ];
+
+      data.u41.neighborPairList = [
+        [data.u40],
+        [data.u42, data.u43],
+        [data.u42]
+      ];
+      data.u42.neighborPairList = [
+        [data.u41, data.u40],
+        [data.u41],
+        [data.u43, data.u44],
+        [data.u43]
+      ];
+      data.u43.neighborPairList = [
+        [data.u42, data.u41],
+        [data.u42],
+        [data.u44]
+      ];
+      data.u44.neighborPairList = [
+        [data.u43, data.u42],
+        [data.u43],
+        [data.u45, data.u46],
+        [data.u45]
+      ];
+      data.u45.neighborPairList = [
+        [data.u44],
+        [data.u46, data.u47],
+        [data.u46]
+      ];
+      data.u46.neighborPairList = [
+        [data.u45, data.u44],
+        [data.u45],
+        [data.u47, data.u48],
+        [data.u47]
+      ];
+      data.u47.neighborPairList = [
+        [data.u46, data.u45],
+        [data.u46],
+        [data.u48]
+      ];
+
+      data.u49.neighborPairList = [
+        [data.u48],
+        [data.u50, data.u51],
+        [data.u50]
+      ];
+      data.u50.neighborPairList = [
+        [data.u49, data.u48],
+        [data.u49],
+        [data.u51, data.u52],
+        [data.u51]
+      ];
+      data.u51.neighborPairList = [
+        [data.u50, data.u49],
+        [data.u50],
+        [data.u52]
+      ];
+      data.u52.neighborPairList = [
+        [data.u51, data.u50],
+        [data.u51],
+        [data.u53, data.u54],
+        [data.u53]
+      ];
+      data.u53.neighborPairList = [
+        [data.u52],
+        [data.u54, data.u55],
+        [data.u54]
+      ];
+      data.u54.neighborPairList = [
+        [data.u53, data.u52],
+        [data.u53],
+        [data.u55, data.u56],
+        [data.u55]
+      ];
+      data.u55.neighborPairList = [
+        [data.u54, data.u53],
+        [data.u54],
+        [data.u56]
+      ];
+
+      data.u57.neighborPairList = [
+        [data.u56],
+        [data.u58, data.u59],
+        [data.u58]
+      ];
+      data.u58.neighborPairList = [
+        [data.u57, data.u56],
+        [data.u57],
+        [data.u59, data.u60],
+        [data.u59]
+      ];
+      data.u59.neighborPairList = [
+        [data.u58, data.u57],
+        [data.u58],
+        [data.u60]
+      ];
+      data.u60.neighborPairList = [
+        [data.u59, data.u58],
+        [data.u59],
+        [data.u61, data.u62],
+        [data.u61]
+      ];
+      data.u61.neighborPairList = [
+        [data.u60],
+        [data.u62, data.u63],
+        [data.u62]
+      ];
+      data.u62.neighborPairList = [
+        [data.u61, data.u60],
+        [data.u61],
+        [data.u63, data.u00],
+        [data.u63]
+      ];
+      data.u63.neighborPairList = [
+        [data.u62, data.u61],
+        [data.u62],
+        [data.u00]
+      ];
+
+      data.t11.neighborPairList = [
+        [data.t12, data.t13],
+        [data.t12]
+      ];
+      data.t12.neighborPairList = [
+        [data.t11],
+        [data.t13]
+      ];
+      data.t13.neighborPairList = [
+        [data.t12, data.t11],
+        [data.t12]
+      ];
+
+      data.t21.neighborPairList = [
+        [data.t22, data.t23],
+        [data.t22]
+      ];
+      data.t22.neighborPairList = [
+        [data.t21],
+        [data.t23]
+      ];
+      data.t23.neighborPairList = [
+        [data.t22, data.t21],
+        [data.t22]
+      ];
+
+      data.t31.neighborPairList = [
+        [data.t32, data.t33],
+        [data.t32]
+      ];
+      data.t32.neighborPairList = [
+        [data.t31],
+        [data.t33]
+      ];
+      data.t33.neighborPairList = [
+        [data.t32, data.t31],
+        [data.t32]
+      ];
+
+      data.t41.neighborPairList = [
+        [data.t42, data.t43],
+        [data.t42]
+      ];
+      data.t42.neighborPairList = [
+        [data.t41],
+        [data.t43]
+      ];
+      data.t43.neighborPairList = [
+        [data.t42, data.t41],
+        [data.t42]
+      ];
+
+      data.t51.neighborPairList = [
+        [data.t52, data.t53],
+        [data.t52]
+      ];
+      data.t52.neighborPairList = [
+        [data.t51],
+        [data.t53]
+      ];
+      data.t53.neighborPairList = [
+        [data.t52, data.t51],
+        [data.t52]
+      ];
+
+      data.t61.neighborPairList = [
+        [data.t62, data.t63],
+        [data.t62]
+      ];
+      data.t62.neighborPairList = [
+        [data.t61],
+        [data.t63]
+      ];
+      data.t63.neighborPairList = [
+        [data.t62, data.t61],
+        [data.t62]
+      ];
+
+      data.t71.neighborPairList = [
+        [data.t72, data.t73],
+        [data.t72]
+      ];
+      data.t72.neighborPairList = [
+        [data.t71],
+        [data.t73]
+      ];
+      data.t73.neighborPairList = [
+        [data.t72, data.t71],
+        [data.t72]
+      ];
+
+      data.t81.neighborPairList = [
+        [data.t82, data.t83],
+        [data.t82]
+      ];
+      data.t82.neighborPairList = [
+        [data.t81],
+        [data.t83]
+      ];
+      data.t83.neighborPairList = [
+        [data.t82, data.t81],
+        [data.t82]
+      ];
       data.tailsList = {};
       for (let item in data) {
         // проверка энергий по каждому соседу являются ли они хвостом или проограммой
         // по всем элементам объекта класса
-        if (data[item].pairElement) {   // что являются объектами класса энергий
-          data[item].neighborPairList.forEach((item2) => {    // смотрим у них каждый хвост или программу
-            const tag = `t${data[item].arcane}_${item2[0].arcane}${item2[1]?`_${item2[1].arcane}`:''}`;    // совпадают ли их числа энергий с тегами хвостов или программ
-            if (mainTailList[tag]) {
-              data.tailsList[`${item}_${item2[1] ? item2[1].id : item2[0].id}`] = {
-                name: mainTailList[tag].name,
-                description: mainTailList[tag].description,
-                energy: tag.slice(1, 10).split('_').join('-'),
-                tag: `${item}_${item2[1] ? item2[1].id : item2[0].id}`
-                // position: data[item].position
+        if (data[item].pairElement) { // что являются объектами класса энергий
+          data[item].neighborPairList.forEach((item2) => { // смотрим у них каждый хвост или программу
+            const tag = `t${data[item].arcane}_${item2[0].arcane}${item2[1]?`_${item2[1].arcane}`:''}`; // совпадают ли их числа энергий с тегами хвостов или программ
+            if (mainTailList[tag]) { //если совпадает (если по тегу хваста есть название и описание в базе данных хвостов)
+              data.tailsList[`${item}_${item2[1] ? item2[1].id : item2[0].id}`] = { //то добавляем в список
+                name: mainTailList[tag].name, //название хвоста
+                description: mainTailList[tag].description, //описание хвоста
+                energy: tag.slice(1, 10).split('_').join('-'), //энегрии хвоста
+                tag: `${item}_${item2[1] ? item2[1].id : item2[0].id}` //тег хвоства
+                // position: data[item].position //положение хваоста
               };
             }
           });
@@ -538,23 +1103,27 @@ new Vue({
       }
       return data;
     },
-    matrixElement: function (number, id, nonPairFalse = true) {
+    matrixElement: function (number, id, nonPairFalse = true) { //конструктор для элемента матрицы
       return {
         id: id,
-        arcane: this.splitAndAdd(number),
-        neighborPairList: [],
-        pairElement: nonPairFalse
+        arcane: this.splitAndAdd(number), //аркан
+        neighborPairList: [], //список парных элементов
+        pairElement: nonPairFalse //является ли он вообще парным (в таблице здоровья или духовном)
       }
     },
-    selectTail: function (tail) {
-      this.selectedTail =  tail;
+    selectTail: function (tail) { //выбор хвоста для просмотра на матрице
+      this.selectedTail = tail;
       this.infoShow = false;
     },
-    selectEnergy: function (energy) {
-      this.selectedEnergy =  energy;
-      this.infoShow = false;
+    checkOutTailSelection: function () { //сброс выбора хвоста
+      this.selectedTail = {
+        name: undefined,
+        description: undefined,
+        energy: undefined,
+        tag: undefined
+      };
     },
-    showPopup: function (header, body, firstButtonText, firstButtonFunction, secondButtonText, secondButtonFunction) {
+    showPopup: function (header, body, firstButtonText, firstButtonFunction, secondButtonText, secondButtonFunction) { //отображение и приём конфига попапа
       this.popupData.header = header;
       this.popupData.body = body;
       this.popupData.show = true;
@@ -563,14 +1132,16 @@ new Vue({
       this.popupData.secondButtonText = secondButtonText;
       this.popupData.secondButtonFunction = secondButtonFunction;
     },
-    closePopup: function () {
+    closePopup: function () { //закрытие попапа и сброс конфига
       this.popupData.header = undefined;
       this.popupData.body = undefined;
       this.popupData.show = false;
-      this.popupData.buttonText = undefined;
-      this.popupData.buttonFunction = undefined;
+      this.popupData.firstButtonText = undefined;
+      this.popupData.firstButtonFunction = undefined;
+      this.popupData.secondButtonText = undefined;
+      this.popupData.secondButtonFunction = undefined;
     },
-    showTailInfo: function(tail) {
+    showTailInfo: function (tail) { //данные по хвосту (попап)
       const description = `<span class="position">${tail.position ? tail.position.toLowerCase() + '</span><br/>' : '</span>'}<p>${tail.description}</p>`;
       let buttonText, buttonFunction;
       if (tail.tag !== this.selectedTail.tag) {
@@ -582,17 +1153,11 @@ new Vue({
       }
       this.showPopup(tail.name, description, buttonText, buttonFunction);
     },
-    showEnergyInfo: function(enegry) {
+    showEnergyInfo: function (enegry) { //данные по энергии (попап)
       const description = `<span class="position">${enegry.position ? enegry.position.toLowerCase() + '</span><br/>' : '</span>'}<p>${arcanesList[enegry.arcane].description}</p>`;
       this.showPopup(arcanesList[enegry.arcane].name, description);
     },
-    checkOutTailSelection: function() {
-      this.selectedTail = {name: undefined, description: undefined, energy: undefined, tag: undefined};
-    },
-    checkOutEnergySelection: function() {
-      this.selectedEnergy = {id: undefined, arcane: undefined, neighborPairList: undefined, pairElement: undefined};
-    },
-    showReference: function() {
+    showReference: function () { //справка (попап)
       this.showPopup("Справка", `
         <h3>Матрица</h3>
         <p>во время ввода данных по матрице при заполнения поля имени данная матрица сохраняется в персональном списке, доступном в меню "Сохранённые матрицы". 
