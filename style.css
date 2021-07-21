@@ -791,7 +791,7 @@ path.tail.selected {
 
 .row-level-other-container {
     position: fixed;
-    bottom: 0;
+    bottom: 20px;
     right: 0;
     left: 0;
     display: flex;
@@ -799,7 +799,7 @@ path.tail.selected {
 }
 
 .row-level-other-container.above {
-    top: 0;
+    top: 20px;
     bottom: unset;
 }
 
