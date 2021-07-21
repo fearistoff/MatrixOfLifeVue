@@ -160,10 +160,10 @@ svg * {
 
 .result {
   position: absolute;
-  bottom: 0px;
-  left: 0px;
-  top: 0px;
-  right: 0px;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
 }
 
 path.tail {
@@ -334,6 +334,7 @@ path.tail.selected {
   transition: box-shadow linear 0.3s, opacity 0.3s linear;
   box-shadow: rgba(0, 0, 0, 0) 0 5px 10px 0;
   opacity: 1;
+    z-index: 1;
 }
 
 .toggle-main-menu.right {
@@ -510,7 +511,7 @@ path.tail.selected {
   display: flex;
   justify-content: space-around;
   flex-wrap: nowrap;
-  width: 300%;
+  width: 200%;
   transition: transform 0.4s ease;
   height: 100%;
 }
@@ -520,15 +521,11 @@ path.tail.selected {
 }
 
 .info-container.two {
-  transform: translate(-33.3333%, 0px);
-}
-
-.info-container.three {
-  transform: translate(-66.6666%, 0px);
+  transform: translate(-50%, 0px);
 }
 
 .info-item {
-  width: 33.3333%;
+  width: 50%;
   flex: 1;
   height: 100%;
   overflow-y: auto;
@@ -572,6 +569,25 @@ path.tail.selected {
   transform: translate(110%, 0px);
 }
 
+.below-blocks-enter-active,
+.below-blocks-leave-active {
+    transition: transform 0.4s ease;
+}
+
+.below-blocks-enter,
+.below-blocks-leave-to {
+    transform: translate(0px, 110%);
+}
+
+.above-blocks-enter-active,
+.above-blocks-leave-active {
+    transition: transform 0.4s ease;
+}
+
+.above-blocks-enter,
+.above-blocks-leave-to {
+    transform: translate(0px, -110%);
+}
 /* список хвостов */
 
 .info-list-item {
@@ -631,14 +647,13 @@ path.tail.selected {
 }
 
 .other-arcane {
-  width: 40px;
-  margin: 5px;
+  margin: 10px;
 }
 
 .curve-brasket {
   font-size: 40px;
   transform: scale(1, 2);
-  transform-origin: 0px 29px;
+  transform-origin: 0 29px;
 }
 
 .brasket {
@@ -674,6 +689,7 @@ path.tail.selected {
   border-radius: 10px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
   padding: 5px;
+    background-color: #ffffff;
 }
 
 .flex-row.tail {
@@ -773,6 +789,20 @@ path.tail.selected {
   opacity: 0;
 }
 
+.row-level-other-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.row-level-other-container.above {
+    top: 0;
+    bottom: unset;
+}
+
 /* для тёмной темы */
 
 @media (prefers-color-scheme: dark) {
@@ -860,6 +890,10 @@ path.tail.selected {
 
   .list-animate-item .text span:last-child {
     color: #d1d1d1;
+  }
+
+  .flex-row-item {
+      background-color: #202020;
   }
 
   .flex-row-item span:first-child {
