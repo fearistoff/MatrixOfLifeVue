@@ -394,6 +394,7 @@ path.tail.selected {
   left: 10px;
   right: 10px;
   overflow: hidden;
+  z-index: 1;
 }
 
 .saves-list h2 {
